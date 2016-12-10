@@ -4422,7 +4422,7 @@ body {
   color: #1Fb1EA;
 }
 .app-header-bg {
-  background-color: #364660;
+  background-color: #849CF3;
   color: #AFC0D0;
 }
 .app-aside {
@@ -4435,7 +4435,7 @@ body {
   top: 0;
   bottom: 0;
   z-index: -1;
-  background-color: #44546E;
+  background-color: #849CF3;
   border: inherit;
 }
 .app-aside-footer {
@@ -4457,7 +4457,7 @@ body {
 .aside-header {
   height: 40px;
   padding: 1px 0;
-  background-color: #2D3B55;
+  background-color: #4A6ADC;
 }
 .aside-header a {
   color: #AFC0D2;

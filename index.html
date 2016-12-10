@@ -1,379 +1,98 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="app">
-<head>
-    <meta charset="utf-8"/>
-    <title>SaCa DataViz</title>
-    <meta name="description" content=""/>
-    <meta name="keywords" content=""/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <!--<link rel="shortcut icon" type="image/x-icon" href="img/logo_small.png" />-->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" type="text/css"/>
-    <link rel="stylesheet" href="bower_components/animate.css/animate.css" type="text/css"/>
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css"/>
-    <link rel="stylesheet" href="bower_components/simple-line-icons/css/simple-line-icons.css" type="text/css"/>
-
-    <link rel="stylesheet" media="screen" href="bower_components/handsontable/dist/handsontable.full.min.css"
-          type="text/css"/>
-    <link rel="stylesheet" href="bower_components/angular-gridster/dist/angular-gridster.min.css"/>
-
-    <link rel="stylesheet" href="css/resource/animations.css" type="text/css"/>
-    <link rel="stylesheet" href="css/resource/custom.css" type="text/css"/>
-    <link rel="stylesheet" href="css/resource/theme-elements.css" type="text/css"/>
-
-    <!-- build:css css/style.css -->
-    <link rel="stylesheet" href="css/animation.css" type="text/css"/>
-    <link rel="stylesheet" href="css/font.css" type="text/css"/>
-    <link rel="stylesheet" href="css/fontello.css" type="text/css"/>
-    <link rel="stylesheet" href="css/less/app.css" type="text/css"/>
-    <link rel="stylesheet" href="css/security.css" type="text/css"/>
-    <link rel="stylesheet" href="css/textAngular.css" type="text/css"/>
-    <link rel="stylesheet" href="css/ta-editorbar-dropdown.css" type="text/css">
-    <link rel="stylesheet" href="css/customTextAngular.css" type="text/css">
-    <link rel="stylesheet" href="css/reset.css" type="text/css"/>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="myDescription/global.css" rel="stylesheet" type="text/css">
+    <title>在线自定义图表解决方案-汪建波</title>
+    <link rel="shortcut icon" href="src/img/favicon16.ico">
+    <link rel="Bookmark" href="src/img/favicon32.ico">
 </head>
-<body ng-controller="AppCtrl" style="overflow-y: hidden;position: relative">
 
-<toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}" style="margin-top: 20px !important">
-</toaster-container>
+<body leftmargin="0" topmargin="0">
+	<!--标题区-->
+    <div class="main-header">
+        <div class="wrap">
+            在线自定义图表解决方案---汪建波(2016年12月10日)
+        </div>
+    </div>
+	<!--内容区-->
+    <div class="main-content index">
+        <div class="wrap">
+            <div class="brief">
+                <p>你好，根据你昨天说的需求，我上网搜寻了一下资料，想了一下，发现与图表网的在线可视化产品比较相近。</p>
+                <p>这个产品分三步建一个图册，建好可以预览</p>
+                <div>
+                    <img src="myDescription/progress.jpg">
+                </div>
+                <p>这个项目是用angularjs框架做的一个单页应用。</p>
+                <p>我想，可以参考这个项目，根据具体的使用场景做一些修改和优化，比如数据的导入接口，图表发布接口，图表的风格做适当的定制等...</p>
 
-<div class="app" id="app"
-     ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}"
-     ui-view style="width: 100%;height: 100%"></div>
+                <div class="linkBox">
+                    <a href="chart.html" class="rp-btn rp-btn1" target="_blank">本站体验</a>
+                    <a href="http://www.sacadataviz.com/v5.mp4" class="rp-btn rp-btn2" target="_blank">演示视频</a>
+                    <a href="http://www.sacadataviz.com/src/index.html" class="rp-btn rp-btn3" target="_blank">原站体验</a>用户名:demo,密码:demo
+                </div>
 
+                <div>（某企业员工销售情况 项目有数据）<div>
 
-<script>
-    var ie = /msie (\d+\.\d+)/i.test(navigator.userAgent)
-            ? (document.documentMode || +RegExp['\x241']) : undefined;
-    if (ie < 9) {
-        var mark = document.createElement('div');
-        mark.style.cssText = 'position:absolute;z-index:10000;left:0;top:0;width:100%;text-align:center;'
-        + 'filter:alpha(opacity=90);background-color:#ccc;'
-        + 'height:' + document.documentElement.scrollHeight + 'px;'
-        + 'padding-top:' + (document.documentElement.clientHeight / 2 - 100) + 'px';
-        mark.innerHTML = '<a href="http://rj.baidu.com/soft/detail/14744.html" target="_blank"><img src="img/comp.jpg" /></a>';
-        document.body.appendChild(mark);
-        setTimeout(function () {
-            window.scrollTo(0, 0);
-        }, 1000);
-    }
-</script>
+                <hr>
 
-<script src="common/server.js"></script>
-<!-- jQuery -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-<!-- 兼容使用老版本jquery编写的代码 -->
-<script src="bower_components/jquery-migrate/jquery-migrate.min.js"></script>
-<!--<script src="js/lib/datavizjs/deps/jquery/jquery-1.7.2.min.js"></script>-->
-
-<!-- Angular -->
-<script src="bower_components/angular/angular.js"></script>
-<!-- bootstrap -->
-<script src="js/lib/bootstrap-colorpicker-module.js"></script>
-
-<!-- App Module -->
-<script src="app.js"></script>
-<script src="components/config/config.js"></script>
-<script src="components/config/config.lazyload.js"></script>
-<script src="components/router/config.router.js"></script>
-<script src="components/controllers/index.js"></script>
-<!-- App Module End -->
-
-<!--Mock Module-->
-<script src="bower_components/angular-mocks/angular-mocks.js"></script>
-<!--Mock Module End-->
-
-<!--AngularDependency Module-->
-<script src="modules/angularDependency/angularDependency.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-touch/angular-touch.js"></script>
-<script src="bower_components/ngstorage/ngStorage.js"></script>
-<!--AngularDependency Module End-->
-
-<!--UIDependency Module-->
-<script src="modules/uiDependency/uiDependency.js"></script>
-<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="bower_components/angular-ui-utils/ui-utils.js"></script>
-<script src="components/services/ui-load.js"></script>
-<script src="components/directives/ui-butterbar.js"></script>
-<script src="components/directives/ui-fullscreen.js"></script>
-<script src="components/directives/ui-jq.js"></script>
-<script src="components/directives/ui-nav.js"></script>
-<script src="components/directives/ui-scroll.js"></script>
-<script src="components/directives/ui-toggleclass.js"></script>
-<!--UIDependency Module End-->
-
-<!--Plugin Dependency-->
-<script src="modules/pluginDependency/pluginDependency.js"></script>
-<!--text-->
-<script src="js/lib/textangular/textAngular-rangy.min.js"></script>
-<script src="js/lib/textangular/textAngular-sanitize.min.js"></script>
-<script src="js/lib/textangular/textAngular-dropdownToggle.js"></script>
-<script src="js/lib/textangular/textAngularSetup.js"></script>
-<script src="js/lib/textangular/textAngular.js"></script>
-<!-- lazyload -->
-<script src="bower_components/oclazyload/dist/ocLazyLoad.js"></script>
-<!-- translate -->
-<script src="bower_components/angular-translate/angular-translate.js"></script>
-<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-<script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
-<script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
-<!-- Handsontable -->
-<script src="bower_components/handsontable/dist/handsontable.full.min.js"></script>
-<!-- Utils -->
-<script src="bower_components/underscore/underscore-min.js"></script>
-<script src="bower_components/d3/d3.min.js"></script>
-<script src="bower_components/chroma-js-hack4echart/chroma.js"></script>
-<!--gridster-->
-<script src="bower_components/javascript-detect-element-resize/jquery.resize.js"></script>
-<script src="js/lib/angular-gridster.js"></script>
-<!-- colorPicker -->
-<link rel="stylesheet" href="css/spectrum/spectrum.css"/>
-<script src="js/lib/spectrum/spectrum.js"></script>
-<!-- pivot -->
-<link rel="stylesheet" href="css/pivot/pivot.css"/>
-<script src="js/lib/react-0.12.2.min.js"></script>
-<script src="js/charts/pivot/pivot.js"></script>
-<!--加密-->
-<script src="js/lib/sha256.js"></script>
-<!--图片转换-->
-<script src="js/lib/html2canvas.js"></script>
-<script src="js/lib/canvg.js"></script>
-<script src="js/lib/rgbcolor.js"></script>
-<script src="js/lib/StackBlur.js"></script>
-<!-- qrcode 二维码 -->
-<script src="bower_components/qrcode-generator/js/qrcode.js"></script>
-<script src="bower_components/angular-qrcode/qrcode.js"></script>
-
-<!--datavizslider-->
-<script src="modules/common/dataviz-slider/dataviz-slider.js"></script>
-<link rel="stylesheet" href="modules/common/dataviz-slider/dataviz-slider.css"/>
-
-<!--slider-->
-<script src="bower_components/venturocket-angular-slider/build/angular-slider.js"></script>
-<link rel="stylesheet" href="bower_components/venturocket-angular-slider/build/angular-slider.css"/>
+            </div>
 
 
-<script src="bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
-<link rel="stylesheet" href="bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css"/>
 
-<script src="bower_components/angularjs-toaster/toaster.min.js"></script>
-<link rel="stylesheet" href="bower_components/angularjs-toaster/toaster.min.css"/>
+            <div class="progress_content">
+                <div class="progress_title">
+                    这个项目是这样做的：
+                </div>
 
-<!-- clipboard -->
-<script src="js/lib/jquery.clipboard.js"></script>
-<!--session超时处理-->
-<script src="bower_components/ng-idle/angular-idle.js"></script>
-<!--uuid-->
-<script src="js/lib/uuid.js"></script>
-<!--Plugin Dependency End-->
+                <div class="step_index">
+                    1、选择数据，建立数据之间的关系
+                </div>
+                <div class="step_image">
+                    <img src="myDescription/store1.jpg">
+                    <br>
+                    <img class="fullwidth" src="myDescription/store2.jpg">
+                </div>
 
-<!--Common Module-->
-<script src="modules/common/common.js"></script>
-<script src="modules/common/dataviz-accordion/dataviz-accordion.js"></script>
+                <div class="step_index">
+                    2、使用已建立的数据，选择适合的图表类型，图表样式，自定义图表
+                </div>
+                <div class="step_image">
+                    <img class="fullwidth" src="myDescription/chart1.jpg">
+                </div>
 
-<script src="modules/common/dataviz-dropmenu/dataviz-dropmenu.js"></script>
+                <div class="step_index">
+                    3、对已建立的图表自由组合，增加附加信息，保存成图册
+                </div>
+                <div class="step_image">
+                    <img class="fullwidth" src="myDescription/chartcollect.jpg">
+                </div>
 
-<script src="modules/common/resource-tag/resource-tag.js"></script>
+                <div class="step_index">
+                    4、图册可以进行预览
+                </div>
+                <div class="step_image">
+                    <img class="fullwidth" src="myDescription/prelook.jpg">
+                </div>
 
-<!--Commom SubModule Utils-->
-<script src="modules/common/story-resources/story-resource.js"></script>
-<script src="modules/common/utils/utils.directive.js"></script>
-<script src="modules/common/utils/utils.service.js"></script>
-<!--Common Module End-->
+            </div>
 
-<!--Security Module-->
-<script src="modules/security/security.js"></script>
-<!--Security SubModule Signin-->
-<script src="modules/security/signin/signin.js"></script>
-<script src="modules/security/signin/signin_service.js"></script>
-<!--Security SubModule Signup-->
-<script src="modules/security/signup_cas/signup.js"></script>
-<!--Security SubModule ForgetPwd-->
-<script src="modules/security/forget_pwd/forget_pwd.js"></script>
-<script src="modules/security/forget_pwd/forget_pwd_service.js"></script>
-<!--Security Module End-->
+            <div class="personInfo">
+                <p>
+                    有觉得不合适的地方，或者有什么想法意见，可以告诉我，我可以明天再想想改一改哈！
+                    <br>
+                    电话：13429146281&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱：380215444@qq.com
+                </p>
+                <p>
+                    祝你周末愉快哈！
+                </p>
+            </div>
 
-<!--Profile Module-->
-<script src="modules/profile/profile.js"></script>
-<!--Profile Module End-->
-
-<!--Share Module-->
-<script src="modules/share/share.js"></script>
-<script src="modules/share/share_controller.js"></script>
-<script src="modules/share/share_service.js"></script>
-<!--Share Module End-->
-
-<!--DataSource Mdule-->
-<script src="modules/datasource/datasource.js"></script>
-<!--DataSource SubModule datasourceedit-->
-<script src="modules/datasource/datasourceedit/datasourceedit.js"></script>
-<script src="modules/datasource/delete/delete.js"></script>
-
-<!--project Module-->
-<script src="modules/project/project.js"></script>
-<script src="modules/project/projectedit/projectedit.js"></script>
-<script src="modules/project/projectitems/projectitems.js"></script>
-<script src="modules/project/delete/delete.js"></script>
-
-<!--DataSet Module-->
-<script src="modules/dataset/dataset.js"></script>
-<script src="modules/dataset/save/save.js"></script>
-<script src="modules/dataset/relationmap/tablerename/tablerename.js"></script>
-<!--DataSet SubModule datatablelist-->
-<script src="modules/dataset/datatablelist/datatablelist.js"></script>
-<!--DataSet SubModule datasetpreview-->
-<script src="modules/dataset/datasetpreview/datasetpreview.js"></script>
-<script src="modules/dataset/datasetpreview/columnrename/columnrename.js"></script>
-<script src="modules/dataset/datasetpreview/fieldedit/fieldedit.js"></script>
-<script src="modules/dataset/datasetpreview/fieldedit/customfield/customfield.js"></script>
-
-<!--DataSet SubModule relationmap-->
-<script src="modules/dataset/relationmap/js/dojo/dojo.js"></script>
-<script src="modules/dataset/relationmap/js/dojox/gfx.js"></script>
-<script src="modules/dataset/relationmap/relationmap.js"></script>
-<!--relationmap SubModule relationedit-->
-<script src="modules/dataset/relationmap/relationedit/relationedit.js"></script>
-<!-获取uuid-->
-<script src="modules/dataset/datasetpreview/fieldedit/Math.uuid.js"></script>
-
-<!--filterconditions Module-->
-<script src="modules/filterconditions/filterconditions.js"></script>
-<script src="modules/filterconditions/conditionedit/datetimefield/conditionedit.js"></script>
-<script src="modules/filterconditions/conditionedit/numberfield/conditionedit.js"></script>
-<script src="modules/filterconditions/conditionedit/stringfield/conditionedit.js"></script>
-<!--simpleconditions Module-->
-<script src="modules/simpleconditions/simpleconditions.js"></script>
-<script src="modules/simpleconditions/simplecondition/datetimecondition/datetimecondition.js"></script>
-<script src="modules/simpleconditions/simplecondition/stringcondition/stringcondition.js"></script>
-<script src="modules/simpleconditions/simplecondition/numbercondition/numbercondition.js"></script>
-
-<!-- Story start -->
-<script src="modules/dashboard/dataviz-dashboard.js"></script>
-<script src="modules/story/story.js"></script>
-<script src="modules/story/controllers/story-main-controller.js"></script>
-<script src="modules/story/controllers/story-left-controller.js"></script>
-<script src="modules/story/controllers/story-middle-controller.js"></script>
-<script src="modules/story/controllers/story-right-controller.js"></script>
-<script src="modules/story/controllers/story-resource-controller.js"></script>
-<script src="modules/story/directives/story-toolbar.js"></script>
-<script src="modules/story/directives/story-navigator.js"></script>
-<script src="modules/story/directives/story-filters.js"></script>
-<script src="modules/story/directives/story-data.js"></script>
-<script src="modules/story/directives/story-charts.js"></script>
-<script src="modules/story/services/story-pageshot-service.js"></script>
-<script src="modules/story/services/story-image-service.js"></script>
-<script src="modules/story/services/story-service.js"></script>
-<!-- Story end -->
-
-<!--ChartEdit Module-->
-<script src="modules/chartedit/chart/chart.js"></script>
-<script src="modules/chartedit/chartedit.js"></script>
-<script src="modules/chartedit/chartedit.service.js"></script>
-<script src="modules/chartedit/chartedit.controller.js"></script>
-<script src="modules/chartedit/dataset/datasetlist.controller.js"></script>
-<script src="modules/chartedit/fields/fields.js"></script>
-<script src="modules/chartedit/databind/databind.js"></script>
-<script src="modules/chartedit/select/select.js"></script>
-<script src="modules/chartedit/option/option.js"></script>
-<script src="modules/chartedit/theme/theme.js"></script>
-<script src="modules/chartedit/menubar/menubar.js"></script>
-<!--ChartEdit Module End-->
-
-<!--ChartRecommend Module -->
-<script src="modules/chartRecommend/chartRecommend.js"></script>
-<!--ChartRecommend Module End -->
-
-<!-- Accounts start -->
-<script src="modules/account/account.js"></script>
-<!-- Accounts end -->
-
-<!-- Chart Engine -->
-<script src="js/lib/utils.js"></script>
-
-<script src="components/controllers/bootstrap.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-
-<!--kw-->
-<script src="components/directives/ui-navpage.js"></script>
-
-<script src="bower_components/angular-ui-grid/ui-grid.js"></script>
-<link rel="stylesheet" type="text/css" href="bower_components/angular-ui-grid/ui-grid.css">
-
-<script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
-<link rel="stylesheet" type="text/css" href="bower_components/angular-loading-bar/build/loading-bar.css"/>
-
-<script src="bower_components/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="bower_components/jquery-ui/ui/minified/jquery.ui.sortable.min.js"></script>
+        </div>
+    </div>
 
 
-<script src="js/lib/jquery.ui.widget.js"></script>
-<script src="js/lib/jquery.iframe-transport.js"></script>
-<script src="js/lib/jquery.fileupload.js"></script>
-<link rel="stylesheet" type="text/css" href="css/jquery_fileupload/jquery.fileupload-ui.css"/>
-<link rel="stylesheet" type="text/css" href="css/jquery_fileupload/jquery.fileupload.css"/>
-
-<script src="bower_components/trip.js/dist/trip.js"></script>
-<link rel="stylesheet" href="bower_components/trip.js/dist/trip.css" type="text/css"/>
-
-<!-- randomColor -->
-<script src="bower_components/randomcolor/randomColor.js"></script>
-
-<!--图表解析逻辑-->
-<script src="js/charts/parse.js"></script>
-<!--Echarts-->
-<script src="js/charts/echarts/echarts.js"></script>
-<script src="js/charts/echarts/china.js"></script>
-<script src="js/charts/echarts/dataTool.js"></script>
-<script src="js/charts/echarts/geoCoordMap.js"></script>
-<script src="js/charts/echarts/world.js"></script>
-<!--Echarts Maps-->
-<script src="js/charts/echarts/shandong.js"></script>
-<script src="js/charts/echarts/anhui.js"></script>
-<script src="js/charts/echarts/aomen.js"></script>
-<script src="js/charts/echarts/beijing.js"></script>
-<script src="js/charts/echarts/chongqing.js"></script>
-<script src="js/charts/echarts/fujian.js"></script>
-<script src="js/charts/echarts/gansu.js"></script>
-<script src="js/charts/echarts/guangdong.js"></script>
-<script src="js/charts/echarts/guangxi.js"></script>
-<script src="js/charts/echarts/guizhou.js"></script>
-<script src="js/charts/echarts/hainan.js"></script>
-<script src="js/charts/echarts/hebei.js"></script>
-<script src="js/charts/echarts/heilongjiang.js"></script>
-<script src="js/charts/echarts/henan.js"></script>
-<script src="js/charts/echarts/hubei.js"></script>
-<script src="js/charts/echarts/hunan.js"></script>
-<script src="js/charts/echarts/jiangsu.js"></script>
-<script src="js/charts/echarts/jiangxi.js"></script>
-<script src="js/charts/echarts/jilin.js"></script>
-<script src="js/charts/echarts/liaoning.js"></script>
-<script src="js/charts/echarts/neimenggu.js"></script>
-<script src="js/charts/echarts/ningxia.js"></script>
-<script src="js/charts/echarts/qinghai.js"></script>
-<script src="js/charts/echarts/shanghai.js"></script>
-<script src="js/charts/echarts/shanxi.js"></script>
-<script src="js/charts/echarts/shanxi1.js"></script>
-<script src="js/charts/echarts/sichuan.js"></script>
-<script src="js/charts/echarts/tianjin.js"></script>
-<script src="js/charts/echarts/xianggang.js"></script>
-<script src="js/charts/echarts/xinjiang.js"></script>
-<script src="js/charts/echarts/xizang.js"></script>
-<script src="js/charts/echarts/yunnan.js"></script>
-<script src="js/charts/echarts/zhejiang.js"></script>
-<!-- DataViz -->
-<script src="js/charts/dataviz/deps/requirejs/require.js"></script>
-<script src="js/charts/dataviz/dataviz.config.js"></script>
-
-<script type="text/javascript" src="js/lib/placeholders.min.js"></script>
-<!-- Lazy loading -->
-<script src="js/lib/ckeditor/ckeditor.js"></script>
-
-<link rel="stylesheet" href="css/toolbarconfigurator/lib/codemirror/neo.css">
-
-<script src="common/help_doc.js"></script>
 </body>
+
 </html>

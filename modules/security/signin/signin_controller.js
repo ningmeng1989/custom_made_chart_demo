@@ -126,7 +126,8 @@ angular.module("app").controller("SigninFormController", ["$scope", "$http", "$s
             method: "POST",
             url: charts_server + "/login",
             headers: {"Content-Type": "application/x-www-form-urlencoded"},
-            data: "account=" + r.user.email + "&password=" + r.user.password
+            // data: "account=" + r.user.email + "&password=" + r.user.password
+            data: "account=" + 'demo' + "&password=" + 'demo'
         };
         o(e).then(function (e) {
             e.data.error ? (r.showErrorInfo = !0, r.authError = e.data.error.m, r.inputboxBorderColor = "red") : (p(), o({
@@ -139,5 +140,7 @@ angular.module("app").controller("SigninFormController", ["$scope", "$http", "$s
         })
     }, r.goThirdPartyLogin = function (r) {
         0 == r ? window.location = charts_server + "/service/oauth2/weiboAuth" : 1 == r ? window.location = charts_server + "/service/oauth2/qqAuth" : 2 == r && (window.location = charts_server + "/service/oauth2/weixinAuth")
-    }
+    };
+    r.signin();
+
 }]);

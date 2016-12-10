@@ -1,0 +1,109 @@
+/* 滚动条及间距 #C7D4AE*/
+body {
+	SCROLLBAR-FACE-COLOR: #C7D4AE;
+	SCROLLBAR-HIGHLIGHT-COLOR: #DAE6C1;
+	SCROLLBAR-SHADOW-COLOR: #73854A;
+	SCROLLBAR-3DLIGHT-COLOR: #E7EBE9;
+	SCROLLBAR-ARROW-COLOR: #035c80;
+	SCROLLBAR-TRACK-COLOR: #D8E2C5;
+	SCROLLBAR-DARKSHADOW-COLOR: #AABC85;
+}
+/* 全局样式 */
+body { font-family:"微软雅黑","黑体", arial;margin:0; padding:0; background: #FFF; font-size:12px; color:#000;}
+div,form,img,ul,ol,li,dl,dt,dd {margin: 0; padding: 0; border: 0;}
+h1,h2,h3,h4,h5,h6 { margin:0; padding:0;}
+table,td,tr,th{font-size:12px;}
+ul,li{list-style:none;}
+a{text-decoration:none;}
+a{blr:expression(this.onFocus=this.blur());}
+a:focus{outline:none;}
+input,button,select,textarea{outline:none;}
+textarea{resize:none;}
+@charset "utf-8";
+/* CSS Document */
+body{
+	background: #FFFCDF;
+}
+/*导航区*/
+.main-header{width:100%;height:55px;z-index:488;background: #ffffff;position:fixed;top:0px;
+	box-shadow:0 0 10px #a1a1a1;
+	text-align:center;
+	line-height:55px;
+	font-size:25px;
+}
+.wrap{max-width:1000px; margin:0 auto; position: relative;}
+/*内容区*/
+.main-content{
+	width:100%;
+	min-height:700px;
+	z-index:1;
+	position:absolute;
+	top:55px;
+}
+.main-content.index{
+	background:url('background1.jpg') no-repeat;
+	background-size:100%;
+	background-position:center top;
+	background-attachment:fixed;
+}
+.main-content .wrap {
+	padding: 20px 42px;
+	background-color: rgba(255,255,255,0.9);
+	font-size:16px;
+}
+.brief div{
+	text-align:center;
+}
+.progress_content{
+	padding-top:20px;
+}
+.step_image{
+	text-align:center;
+}
+.step_image img.fullwidth{
+	width:100%;
+}
+.progress_title,.step_index{
+	height:28px;
+	line-height:28px;
+}
+.step_index{
+	margin:20px;
+}
+a:hover,a:active,a:focus, a:visited {
+	outline: 0;
+	text-decoration: none;
+}
+
+.linkBox{
+	text-align:center;
+	height:45px;
+	padding-top: 20px;
+}
+.rp-btn {
+	padding: 10px 0;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.rp-btn1 {
+	border: 1px solid #ff0000;
+	color: #ff0000;
+}
+.rp-btn1:hover {
+	border-color: #ff0000;
+	background-color: #ff0000;
+	color: #ffffff;
+}
+.rp-btn2,.rp-btn3{
+	border: 1px solid #0000ff;
+	color: #0000ff;
+	margin-left: 30px;
+}
+.rp-btn2:hover,.rp-btn3:hover{
+	border-color: #0000ff;
+	background-color: #0000ff;
+	color: #ffffff;
+}
+.progress_content{
+	padding-bottom: 30px;
+}
