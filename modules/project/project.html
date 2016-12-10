@@ -1,0 +1,71 @@
+<div class="vbox vbox-auto-xs vbox-auto-sm bg-white-only" ng-controller="projectController">
+    <div class="wrapper b-b app-toolbar">
+        <span class="pull-left">
+               <ul class="breadcrumb no-bg m-b-none">
+                   <li><a ui-sref="app.project">我的项目</a></li>
+               </ul>
+        </span>
+        <span class="pull-right">
+            <a class="btn no-shadow bar-btn" ng-click="startdelete()"><i class="dz-icon-delete"></i></a>
+        </span>
+    </div>
+    <div class="wrapper text-center btn-circular-bar">
+        <button class="btn m-b-xs w-xs btn-info btn-circular" ng-click="newProject()" title="新建项目">
+            <span style="font-size:18px;"><i class="dz-icon-addproject"></i></span>
+            <div ng-if="!scrollsmall.value">建项目</div>
+        </button>
+    </div>
+    <div class="row-row">
+        <div class="cell dz-srollbar scrollable">
+            <div class="cell-inner">
+                <div class="wrapper-md" style="padding-top: 0;">
+                    <div class="project" ng-repeat="project in projectList | orderBy: '-createTime' "
+                         style="margin: 10px;">
+                        <div class="thumb-info ">
+                            <div class="clearfix text-center m-t"
+                                 style="padding-top: 30px;margin: 0;width: 200px;height: 140px">
+                                <div class="inline">
+                                    <div class="thumb-xl" style="height:110px;overflow: hidden">
+                                        <h4 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                                            {{project.name}}</h4>
+                                        <h5>{{project.createTime}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="thumb-info-action item-info-action" ng-if="!delete.active" ng-click="openProject(project)">
+                                <div class="thumb-info-action-icon text-center">
+                                    <div class="text-center item-btn"
+                                         ng-click="editProject(project);$event.stopPropagation();">
+                                        <div class="item-btn-circular">
+                                            <i class="dz-icon-edit item-btn-edit"></i>
+                                        </div>
+                                        <div class="item-btn-title" style="width: 50px;margin-left: -5px;">重命名</div>
+                                    </div>
+                                    <div class="text-center item-btn"
+                                         ng-click="openProject(project);$event.stopPropagation();">
+                                        <div class="item-btn-circular">
+                                            <i class="dz-icon-open item-btn-open"></i>
+                                        </div>
+                                        <div class="item-btn-title">进入</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="delete-info-action" ng-if="delete.active"
+                                 ng-class="{true:'delete-action-select'}[project.delete]"
+                                 ng-click="selectProject(project)">
+                                <div class="text-center" style="padding-top: 55px;height: 140px;color:#FFF">
+                                    <div ng-if="!project.delete" style="margin-top: 5px;">点击选择</div>
+                                    <i ng-if="project.delete" class="dz-icon-selected" style="font-size: 25px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="padder b-t text-center" ng-if="delete.active" style="background-color: #E9EEF1;">
+        <button class="btn btn-danger" ng-disabled="delete.projectList.length<=0" ng-click="deleteProject()" style="padding: 6px 20px;margin: 5px;">确定</button>
+        <button class="btn " ng-click="deleteCancel()" style="padding: 6px 20px;margin: 5px;">取消</button>
+    </div>
+</div>

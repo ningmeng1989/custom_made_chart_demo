@@ -1,0 +1,31 @@
+<div>
+    <form name="_form" class="form-horizontal" ng-submit="submit(_form)">
+        <div class="modal-header bg-primary">
+            <button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
+            <h4 style="margin: 0px">{{form.header}}</h4>
+        </div>
+
+        <div class="modal-body">
+            <div class="panel-body">
+                <div class="form-group pull-in clearfix">
+                    <div class="col-sm-12 m-b" ng-if="form.oldName">
+                        <label>当前名称：</label> {{form.oldName}}
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" placeholder="请输入图册名" ng-model="form.name" required maxlength="20">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="row">
+                <div class="text-center">
+                    <button type="submit" class="btn btn-info">确定</button>
+                    <button type="button" class="btn btn-default" ng-click="dismiss()">取消</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" ng-app="playChartBook">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>SaCa DataViz</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=11"/>
+    <link rel="shortcut icon" type="image/x-icon" href="src/img/xx.png"/>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+
+    <!-- toaster -->
+    <link rel="stylesheet" href="bower_components/angularjs-toaster/toaster.min.css"/>
+
+    <link rel="stylesheet" href="css/less/app.css"/>
+    <link rel="stylesheet" href="modules/playchartbook/playChartBook.css"/>
+</head>
+
+<body>
+<script src="common/server.js"></script>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<!-- bootstrap -->
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<!-- toaster -->
+<script src="bower_components/angularjs-toaster/toaster.min.js"></script>
+
+<script src="js/lib/spectrum/spectrum.js"></script>
+
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/ngstorage/ngStorage.js"></script>
+<script src="bower_components/underscore/underscore-min.js"></script>
+<script src="bower_components/d3/d3.min.js"></script>
+<script src="bower_components/chroma-js-hack4echart/chroma.js"></script>
+<script src="bower_components/javascript-detect-element-resize/jquery.resize.js"></script>
+<!--<script src="js/lib/echarts/option.js"></script>-->
+<!--<script src="js/lib/echarts/echarts-all.js"></script>-->
+
+<!--datavizslider-->
+<script src="modules/common/dataviz-slider/dataviz-slider.js"></script>
+<link rel="stylesheet" href="modules/common/dataviz-slider/dataviz-slider.css"/>
+
+<!--simpleconditions Module-->
+<script src="modules/simpleconditions/simpleconditions.js"></script>
+<script src="modules/simpleconditions/simplecondition/datetimecondition/datetimecondition.js"></script>
+<script src="modules/simpleconditions/simplecondition/stringcondition/stringcondition.js"></script>
+<script src="modules/simpleconditions/simplecondition/numbercondition/numbercondition.js"></script>
+
+<!-- 为了加载IE9检测 -->
+<script src="js/lib/utils.js"></script>
+<script src="modules/playchartbook/playChartBook.js"></script>
+
+<!--Common Module-->
+<!--Commom SubModule Utils-->
+<script src="modules/common/story-resources/story-resource.js"></script>
+<script src="modules/common/utils/utils.directive.js"></script>
+<script src="modules/common/utils/utils.service.js"></script>
+
+<!--Common Module End-->
+
+<script src="modules/dashboard/dataviz-dashboard.js"></script>
+
+<!--Chart Module-->
+<script src="modules/chartedit/chart/chart.js"></script>
+<script src="modules/chartedit/theme/theme.js"></script>
+<!--Chart Module End-->
+
+
+<!--图表解析逻辑-->
+<script src="js/charts/parse.js"></script>
+<!-- pivot -->
+<link rel="stylesheet" href="css/pivot/pivot.css"/>
+<script src="js/lib/react-0.12.2.min.js"></script>
+<script src="js/charts/pivot/pivot.js"></script>
+<!--Echarts-->
+<script src="js/charts/echarts/echarts.js"></script>
+<script src="js/charts/echarts/china.js"></script>
+<script src="js/charts/echarts/dataTool.js"></script>
+<script src="js/charts/echarts/geoCoordMap.js"></script>
+<script src="js/charts/echarts/world.js"></script>
+
+<!--Echarts Maps-->
+<script src="js/charts/echarts/shandong.js"></script>
+<script src="js/charts/echarts/anhui.js"></script>
+<script src="js/charts/echarts/aomen.js"></script>
+<script src="js/charts/echarts/beijing.js"></script>
+<script src="js/charts/echarts/chongqing.js"></script>
+<script src="js/charts/echarts/fujian.js"></script>
+<script src="js/charts/echarts/gansu.js"></script>
+<script src="js/charts/echarts/guangdong.js"></script>
+<script src="js/charts/echarts/guangxi.js"></script>
+<script src="js/charts/echarts/guizhou.js"></script>
+<script src="js/charts/echarts/hainan.js"></script>
+<script src="js/charts/echarts/hebei.js"></script>
+<script src="js/charts/echarts/heilongjiang.js"></script>
+<script src="js/charts/echarts/henan.js"></script>
+<script src="js/charts/echarts/hubei.js"></script>
+<script src="js/charts/echarts/hunan.js"></script>
+<script src="js/charts/echarts/jiangsu.js"></script>
+<script src="js/charts/echarts/jiangxi.js"></script>
+<script src="js/charts/echarts/jilin.js"></script>
+<script src="js/charts/echarts/liaoning.js"></script>
+<script src="js/charts/echarts/neimenggu.js"></script>
+<script src="js/charts/echarts/ningxia.js"></script>
+<script src="js/charts/echarts/qinghai.js"></script>
+<script src="js/charts/echarts/shanghai.js"></script>
+<script src="js/charts/echarts/shanxi.js"></script>
+<script src="js/charts/echarts/shanxi1.js"></script>
+<script src="js/charts/echarts/sichuan.js"></script>
+<script src="js/charts/echarts/tianjin.js"></script>
+<script src="js/charts/echarts/xianggang.js"></script>
+<script src="js/charts/echarts/xinjiang.js"></script>
+<script src="js/charts/echarts/xizang.js"></script>
+<script src="js/charts/echarts/yunnan.js"></script>
+<script src="js/charts/echarts/zhejiang.js"></script>
+<!-- DataViz -->
+<script src="js/charts/dataviz/deps/requirejs/require.js"></script>
+<script src="js/charts/dataviz/dataviz.config.js"></script>
+
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"
+                   style="margin-top: 20px !important">
+</toaster-container>
+
+<div class="play-main" ng-controller="playChartBook">
+    <!--<div ng-if="!!chartbookId" class="play-container" ng-style="dashboardStyle">-->
+    <!--<dataviz-dashboard animate-on-change="currentPageIndex" model="currentPage.widget" editable="false"></dataviz-dashboard>-->
+    <!--</div>-->
+    <div ng-if="!!chartId" class="play-container" ng-style="dashboardStyle">
+        <div dataviz-chart style="width:100%;height: 100%;" chart="chart"></div>
+    </div>
+    <div class="play-condition"
+         ng-class="{true:'play-condition-show',false:'play-condition-hide'}[showcondition==true]">
+        <simpleconditions model="conditions" refresh-data="broadcastEvent()"></simpleconditions>
+    </div>
+</div>
+
+<div class="play-progress">
+    <span></span>
+</div>
+
+<div class="play-button">
+
+    <i class="glyphicon glyphicon-filter" ng-click="showcondition=!showcondition"></i>
+    <i class="glyphicon glyphicon-heart"></i>
+    <i class="glyphicon glyphicon-fullscreen" ng-if="chartBook && chartBook.showMode.type!=='fit'"
+       title={{chartBook.showMode.type=='actual'?'点击适应屏幕大小':'点击按实际大小显示'}} ng-click="toggleShowMode()"></i>
+    <i class="glyphicon glyphicon-play play-prev" ng-class="{'disabled': (currentPageIndex==0 || !!chartId)}"
+       ng-click="prevPage()"></i>
+    <i class="glyphicon glyphicon-play play-next"
+       ng-class="{'disabled': (currentPageIndex==chartBook.pages.length-1 || !!chartId)}" ng-click="nextPage()"></i>
+
+</div>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?ada4614f48f18ea09a77e83c145e7c9f";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

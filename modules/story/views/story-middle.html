@@ -1,0 +1,17 @@
+<div class="w-full h-full pos-rlt" ng-controller="storyMainCtrl">
+
+    <!--<story-filters></story-filters>-->
+    <div class="story-filters">
+        <filterconditions filter-accept=".story-data" model="chartBook.conditions" refresh-data="broadcastEvent()"></filterconditions>
+    </div>
+
+    <div class="story-dashboard-container">
+        <div>
+            <div class="story-dashboard" ng-style="dashboardStyle">
+                <dataviz-dashboard-container page-model="current.page.widget">
+                    <dataviz-dashboard model="current.page.widget" selected-widget="current.widget" editable="true"></dataviz-dashboard>
+                </dataviz-dashboard-container>
+            </div>
+        </div>
+    </div>
+</div>

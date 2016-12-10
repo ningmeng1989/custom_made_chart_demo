@@ -1,0 +1,39 @@
+<ul class="nav">
+    <li ui-sref-active="active">
+        <a ui-sref="app.project">
+            <i class="dz-icon-project"></i>
+            <span class="main-menu-font">我的项目<i class="fa fa-angle-right" style="margin-left: 50px"></i></span>
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a>
+            <i class="dz-icon-team"></i>
+            <span class="main-menu-font">协作项目<i class="fa fa-angle-right" style="margin-left: 50px"></i></span>
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a>
+            <i class="dz-icon-favorite"></i>
+            <span class="main-menu-font">我的收藏<i class="fa fa-angle-right" style="margin-left: 50px"></i></span>
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a>
+            <i class="dz-icon-demo"></i>
+            <span class="main-menu-font">示例演示<i class="fa fa-angle-right" style="margin-left: 50px"></i></span>
+        </a>
+    </li>
+    <li ui-sref-active="active" ng-if="userinfo.isAdmin">
+        <a ui-sref="app.account">
+            <i class="fa fa-user"></i>
+            <span class="main-menu-font">用户管理<i class="fa fa-angle-right" style="margin-left: 50px"></i></span>
+        </a>
+    </li>
+
+    <!--<div ng-show="!app.settings.asideFolded && showPic" style="position: absolute;bottom: 24px;width: 199px;height:149px;padding: 8px">-->
+    <!--<button type="button" ng-click="showPic = false" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+    <!--<a href="http://platform.neusoft.com" title ="双剑合并，助力新一代企业互联网应用" target="_blank">-->
+    <!--<img style="width: 180px;max-height: 100%;max-width: 100%" src="img/left_bottom_pic.png"/>-->
+    <!--</a>-->
+    <!--</div>-->
+</ul>

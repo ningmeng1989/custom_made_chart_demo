@@ -1,0 +1,15 @@
+.red{
+    color: red;
+}
+.ta-bind:focus {
+    outline: -webkit-focus-ring-color auto 5px !important;
+    box-shadow: 0 0 1px 2px #78aeda, 0 0 1px #78aeda inset;
+    -webkit-box-shadow: none;
+    border-radius: 2px;
+    -webkit-transition: none;
+    transition: none;
+   -moz-transition: all .15s;
+}
+.btn-group > .btn:hover, .btn-group-vertical > .btn:hover, .btn-group > .btn:focus, .btn-group-vertical > .btn:focus, .btn-group > .btn:active, .btn-group-vertical > .btn:active, .btn-group > .btn.active, .btn-group-vertical > .btn.active{
+    z-index: 3;
+}

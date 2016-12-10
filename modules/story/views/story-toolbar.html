@@ -1,0 +1,102 @@
+<div class="story-toolbar">
+
+    <breadcrumbs class="pull-left" project="project" resource="chartBook.name"></breadcrumbs>
+
+    <!--<story-breadcrumb></story-breadcrumb>-->
+    <!--<div class="pull-left wrapper-sm">-->
+        <!--<span ng-show="!editingChartBookName">{{currentChartBook.name}}</span>-->
+        <!--<input type="text" style="font-family: Microsoft YaHei; font-size: 14px; height: 19px; margin: 0"-->
+               <!--ng-model="currentChartBook.name" ng-show="editingChartBookName"-->
+               <!--ng-blur="editingChartBookName=!editingChartBookName">-->
+        <!--<span style="cursor: pointer" title="改名" ng-click="editingChartBookName=!editingChartBookName;"><i-->
+                <!--class="fa fa-edit"></i></span>-->
+    <!--</div>-->
+
+    <div class="pull-right">
+        <ul class="buttons">
+            <li class="no-padder">
+                <div class="pos-rlt wrapper-xs" dropdown>
+                    <a href title="保存" ng-click="save()">
+                        <i class="fa fa-save"></i>
+                    </a>
+                    <a href class="dropdown-toggle" style="padding-left: 0" dropdown-toggle aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="min-width: 0" role="menu">
+                        <li>
+                            <a href ng-click="rename()">重命名</a>
+                        </li>
+                        <li>
+                            <a href ng-click="saveAs()">另存为</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href title="预览" ng-click="preview()">
+                    <i class="fa fa-play"></i>
+                </a>
+            </li>
+            <li>
+                <a href title="tag" ng-click="addTag()">
+                    <i class="fa fa-tag"></i>
+                </a>
+            </li>
+            <!--<li>-->
+                <!--<a href title="全屏" ng-click="toggleFullScreen()">-->
+                    <!--<i class="glyphicon glyphicon-fullscreen"></i>-->
+                <!--</a>-->
+            <!--</li>-->
+            <li>
+                <a href title="分享" ng-click="share">
+                    <i class="fa fa-share-alt"></i>
+                </a>
+            </li>
+            <li>
+                <a href title="返回" ng-click="return()">
+                    <i class="fa fa-mail-forward"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!--<div class="pull-right" style="padding-right: 10px">-->
+        <!--<div class="btn-group">-->
+            <!--<button type="button" title="tag" class="btn btn-default no-border" ng-click="addTag()">-->
+                <!--<i class="fa fa-tag"></i>-->
+            <!--</button>-->
+            <!--<button type="button" title="全屏" class="btn btn-default no-border" ng-click="toggleFullScreen()"><i-->
+                    <!--class="glyphicon glyphicon-fullscreen" style="font-size: 17px;"></i></button>-->
+            <!--<button type="button" title="预览" class="btn btn-default no-border" ng-click="preview()"><i-->
+                    <!--class="fa fa-search-plus"></i></button>-->
+        <!--</div>-->
+        <!--<div class="btn-group" dropdown>-->
+            <!--<button type="button" title="保存" class="btn btn-default no-border" ng-click="save()"><i class="fa fa-save"></i>-->
+            <!--</button>-->
+            <!--<button class="btn btn-default no-border dropdown-toggle" style="padding-left: 0" dropdown-toggle aria-haspopup="true" aria-expanded="false">-->
+                <!--<span class="caret"></span>-->
+            <!--</button>-->
+            <!--<ul class="dropdown-menu" style="min-width: 0" role="menu">-->
+                <!--<li>-->
+                    <!--<a href ng-click="rename()">重命名</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href ng-click="saveAs()">另存为</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <!--<div class="btn-group">-->
+            <!--<button type="button" title="分享" class="btn btn-default no-border"><i-->
+                    <!--class="fa fa-share-alt"></i></button>-->
+        <!--</div>-->
+
+        <!--<div class="btn-group">-->
+            <!--<div class="separator"></div>-->
+        <!--</div>-->
+
+        <!--<div class="btn-group">-->
+            <!--<a title="返回" ng-click="return()" class="back-btn"></a>-->
+        <!--</div>-->
+    <!--</div>-->
+
+</div>

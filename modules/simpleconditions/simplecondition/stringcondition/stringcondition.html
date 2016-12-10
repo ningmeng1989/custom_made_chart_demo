@@ -1,0 +1,55 @@
+<div class="condition-header">{{model.field.name}}</div>
+<div class="condition-body">
+    <div style="height: 150px;overflow:auto;" ng-if="model.context.routine.active">
+        <div class="checkbox" ng-repeat="value in allValues"
+             style="padding-left: 6px;margin: 0;">
+            <label class="i-checks i-checks-sm"
+                   ng-style="{'margin': '2px','text-decoration':(isSelected(value)&&model.context.routine.others ? 'line-through' : 'none')}">
+                <input type="checkbox" ng-checked="isSelected(value)" ng-click="changeValue(value)">
+                <i></i>{{value}}
+            </label>
+        </div>
+    </div>
+    <div style="padding: 5px 5px 0 5px" ng-if="model.context.wildcard.active">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="请输入匹配值"
+                   ng-readonly="model.context.wildcard.matchType=='isEmpty'"
+                   ng-model="model.context.wildcard.matchValue" ng-keydown="$event.stopPropagation();">
+        </div>
+        <div class="radio">
+            <label class="i-checks i-checks-sm">
+                <input type="radio" name="matchTypeRadios" value="contains"
+                       ng-model="model.context.wildcard.matchType">
+                <i></i>包含
+            </label>
+        </div>
+        <div class="radio">
+            <label class="i-checks i-checks-sm">
+                <input type="radio" name="matchTypeRadios" value="startWith"
+                       ng-model="model.context.wildcard.matchType">
+                <i></i>开头为
+            </label>
+        </div>
+        <div class="radio">
+            <label class="i-checks i-checks-sm">
+                <input type="radio" name="matchTypeRadios" value="endWith"
+                       ng-model="model.context.wildcard.matchType">
+                <i></i>结尾为
+            </label>
+        </div>
+        <div class="radio">
+            <label class="i-checks i-checks-sm">
+                <input type="radio" name="matchTypeRadios" value="equals"
+                       ng-model="model.context.wildcard.matchType">
+                <i></i>精确匹配
+            </label>
+        </div>
+        <div class="radio">
+            <label class="i-checks i-checks-sm">
+                <input type="radio" name="matchTypeRadios" value="isEmpty"
+                       ng-model="model.context.wildcard.matchType">
+                <i></i>为空
+            </label>
+        </div>
+    </div>
+</div>

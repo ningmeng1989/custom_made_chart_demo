@@ -1,0 +1,94 @@
+<table cellpadding="0" cellspacing="0" style="margin-left: 5px; margin-top: 0px">
+    <colgroup>
+        <col width="70px">
+        <col>
+    </colgroup>
+    <tr col width="180px" ng-show="insideValue.isShow">
+        <td class="header">{{insideValue.name}}</td>
+    </tr>
+    <tr ng-repeat="(subKey, subValue) in insideValue.properties">
+        <td ng-if="!subValue.properties && subValue.isShow">{{subValue.name}}：</td>
+        <td ng-if="!subValue.properties && subValue.isShow">
+            <div ng-switch="" on="subValue.type[0]">
+                <div ng-switch-when="boolean">
+                    <label class="i-switch i-switch-xs">
+                        <input type="checkbox" checked ng-model="subValue.default">
+                        <i></i>
+                    </label>
+                </div>
+                <div ng-switch-when="Color">
+                    <input type="text" colorpicker ng-model="subValue.default">
+                </div>
+                <div ng-switch-when="button">
+                    <div ng-if="subKey == 'left'">
+                        <div class="btn-group">
+                            <button ng-click="subValue.default='left'" type="button" ng-class="{active: subValue.default=='left'}" class="btn btn-default btn-xs"><i class="fa fa-align-left"></i></button>
+                            <button ng-click="subValue.default='center'" type="button" ng-class="{active: subValue.default=='center'}" class="btn btn-default btn-xs"><i class="fa fa-align-center"></i></button>
+                            <button ng-click="subValue.default='right'" type="button" ng-class="{active: subValue.default=='right'}" class="btn btn-default btn-xs"><i class="fa fa-align-right"></i></button>
+                        </div>
+                    </div>
+                    <div ng-if="subKey == 'top'">
+                        <div class="btn-group">
+                            <button ng-click="subValue.default='top'" type="button" ng-class="{active: subValue.default=='top'}" class="btn btn-default btn-xs">居上</button>
+                            <button ng-click="subValue.default='middle'" type="button" ng-class="{active: subValue.default=='middle'}" class="btn btn-default btn-xs">居中</button>
+                            <button ng-click="subValue.default='bottom'" type="button" ng-class="{active: subValue.default=='bottom'}" class="btn btn-default btn-xs">居下</button>
+                        </div>
+                    </div>
+                    <div ng-if="subKey == 'orient' || subKey == 'layout'">
+                        <div class="btn-group">
+                            <button ng-click="subValue.default='horizontal'" type="button" ng-class="{active: subValue.default=='left'}" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-resize-horizontal"></i></button>
+                            <button ng-click="subValue.default='vertical'" type="button" ng-class="{active: subValue.default=='center'}" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-resize-vertical"></i></button>
+                        </div>
+                    </div>
+                    <div ng-if="subKey == 'nameLocation'">
+                        <div class="btn-group">
+                            <div class="btn-group">
+                                <button ng-click="subValue.default='start'" type="button" ng-class="{active: subValue.default=='start'}" class="btn btn-default btn-xs">开始</button>
+                                <button ng-click="subValue.default='middle'" type="button" ng-class="{active: subValue.default=='middle'}" class="btn btn-default btn-xs">中间</button>
+                                <button ng-click="subValue.default='end'" type="button" ng-class="{active: subValue.default=='end'}" class="btn btn-default btn-xs">结尾</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="subKey == 'position'">
+                        <div class="btn-group">
+                            <div class="btn-group">
+                                <button ng-click="subValue.default='start'" type="button" ng-class="{active: subValue.default=='start'}" class="btn btn-default btn-xs"><i class="fa fa-align-left"></i></button>
+                                <button ng-click="subValue.default='middle'" type="button" ng-class="{active: subValue.default=='middle'}" class="btn btn-default btn-xs"><i class="fa fa-align-center"></i></button>
+                                <button ng-click="subValue.default='end'" type="button" ng-class="{active: subValue.default=='end'}" class="btn btn-default btn-xs"><i class="fa fa-align-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="subKey == 'fontStyle'">
+                        <div class="btn-group">
+                            <button ng-click="subValue.default=='normal'? subValue.default='italic': subValue.default='normal'" type="button" ng-class="{active: subValue.default=='italic'}" class="btn btn-default btn-xs"><i class="fa fa-italic"></i></button>
+                        </div>
+                    </div>
+                    <div ng-if="subKey == 'fontWeight'">
+                        <div class="btn-group">
+                            <button ng-click="subValue.default=='normal'? subValue.default='bold': subValue.default='normal'" type="button" ng-class="{active: subValue.default=='left'}" class="btn btn-default btn-xs"><i class="fa fa-bold"></i></button>
+                        </div>
+                    </div>
+                    <div ng-if="subKey == 'trigger'">
+                        <div class="btn-group">
+                            <button ng-click="subValue.default='item'" class="btn btn-default btn-xs">数据项</button>
+                            <button ng-click="subValue.default='axis'" class="btn btn-default btn-xs">坐标轴</button>
+                        </div>
+                    </div>
+                    <div ng-if="subKey == 'triggerOn'">
+                        <div class="btn-group">
+                            <button ng-click="subValue.default='mousemove'" class="btn btn-default btn-xs">鼠标移动</button>
+                            <button ng-click="subValue.default='click'" class="btn btn-default btn-xs">鼠标点击</button>
+                        </div>
+                    </div>
+                </div>
+                <div ng-switch-when="list">
+                    <select class="form-control" ng-model="subValue.default" ng-options="item for item in subValue.items">
+                    </select>
+                </div>
+                <input ng-switch-when="number" type="number" out-of-range class="form-control" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }" ng-model="subValue.default"/>
+                <input ng-switch-default="ng-switch-default" type="text" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
+                       min="0" class="form-control" ng-model="subValue.default"/>
+            </div>
+        </td>
+    </tr>
+</table>

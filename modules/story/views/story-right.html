@@ -1,0 +1,223 @@
+<div class="story-right" ng-controller="storyRightCtrl">
+
+    <dv-accordion close-others="true">
+        <dv-accordion-group is-open="accordionGroupPages.open">
+            <dv-accordion-heading>
+                图册页
+                <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': accordionGroupPages.open, 'fa-angle-right': !accordionGroupPages.open}"></i>
+                <span class="story-accordion-button" title="添加图册页" ng-click="addPage($event)"><i class="fa fa-plus" ng-class="{'fa-list': showList, 'fa-th': !showList}"></i></span>
+            </dv-accordion-heading>
+            <story-navigator></story-navigator>
+        </dv-accordion-group>
+        <dv-accordion-group is-open="accordionGroupContent.open" is-disabled="accordionGroupContent.disabled">
+            <dv-accordion-heading>
+                <span ng-class="{'text-muted': accordionGroupContent.disabled}">内容设置</span><i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': accordionGroupContent.open, 'fa-angle-right': !accordionGroupContent.open}"></i>
+            </dv-accordion-heading>
+            <div class="wrapper-sm">
+                <div ng-switch="" on="current.widget.type">
+                    <div ng-switch-when="chart">
+                        <dataviz-chartedit-option chart="current.widget.resource" instant="true"></dataviz-chartedit-option>
+                    </div>
+                    <div ng-switch-when="image" ng-init="resource=current.widget.resource">
+                        <section>
+                            <header>
+                                <span>显示模式：</span>
+                            </header>
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="imageShowMode" value="contain"
+                                               ng-model="resource.showMode">
+                                        包含
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="imageShowMode" value="stretch"
+                                               ng-model="current.widget.resource.showMode">
+                                        拉伸
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="imageShowMode" value="cover"
+                                               ng-model="current.widget.resource.showMode">
+                                        覆盖
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="imageShowMode" value="origin"
+                                               ng-model="current.widget.resource.showMode">
+                                        原始大小
+                                    </label>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <header>
+                                图片地址：
+                            </header>
+                            <div class="form-group m-t-sm">
+                                <input type="text" ng-model="current.widget.resource.imageStore">
+                            </div>
+                        </section>
+                    </div>
+                    <div ng-switch-when="page" ng-init="tempURL=current.widget.resource.url">
+                        <section>
+                            <header>
+                                <span>网页地址：</span>
+                            </header>
+                            <form name="_form" ng-submit="changeURL(tempURL)">
+                                <div class="form-group m-t-sm">
+                                    <input type="text" ng-model="tempURL" ng-blur="changeURL(tempURL)">
+                                </div>
+                            </form>
+                        </section>
+                    </div>
+                </div>
+                <div ng-if="current.widget.type">
+                    <section>
+                        <header>
+                            <span>联动设置</span>
+                        </header>
+                        <div class="form-group">
+                            <label class="checkbox i-checks m-l-md m-b-sm">
+                                <input type="checkbox" ng-model="current.widget.props.asFilter"><i></i>作为筛选器
+                            </label>
+                            <label class="checkbox i-checks m-l-md m-b-sm">
+                                <input type="checkbox" ng-model="current.widget.props.notAccept"><i></i>不接受联动
+                            </label>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </dv-accordion-group>
+        <dv-accordion-group is-open="accordionGroupBook.open">
+            <dv-accordion-heading>
+                图册设置<i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': accordionGroupBook.open, 'fa-angle-right': !accordionGroupBook.open}"></i>
+            </dv-accordion-heading>
+            <div class="wrapper-sm">
+                <section>
+                    <header>
+                        <span>图册大小</span>
+                    </header>
+                    <div class="form-group">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="bookShowMode" value="fit" ng-model="chartBook.showMode.type">
+                                自适应
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="bookShowMode" ng-checked="chartBook.showMode.type!=='fit'" ng-click="changeShowMode()">
+                                固定分辨率
+                            </label>
+                        </div>
+                        <table ng-if="chartBook.showMode.type!=='fit'">
+                            <colgroup>
+                                <col width="70px"/>
+                                <col/>
+                            </colgroup>
+                            <tr>
+                                <td>宽度(px)：</td>
+                                <td>
+                                    <input type="number" ng-model="chartBook.showMode.width" ng-blur="setChartBookWidth($event)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>高度(px)：</td>
+                                <td>
+                                    <input type="number" ng-model="chartBook.showMode.height" ng-blur="setChartBookHeight($event)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    显示方式：
+                                </td>
+                                <td>
+                                    <select ng-model="chartBook.showMode.type" style="width: 100%">
+                                        <option value="actual">原始大小</option>
+                                        <option value="scale">缩放长边铺满</option>
+                                        <!--<option value="w-fit">等比缩放宽度铺满</option>-->
+                                        <!--<option value="h-fit">等比缩放高度铺满</option>-->
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--<div class="radio" style="margin-left: 30px;" ng-if="chartBook.showMode.width">-->
+                            <!--<label>-->
+                                <!--<input type="radio" name="bookShowMode" value="actual" ng-model="chartBook.showMode.type">-->
+                                <!--原始大小-->
+                            <!--</label>-->
+                        <!--</div>-->
+                        <!--<div class="radio" style="margin-left: 30px;">-->
+                            <!--<label>-->
+                                <!--<input type="radio" name="bookShowMode" value="w-fit" ng-model="chartBook.showMode.type">-->
+                                <!--等比缩放宽度铺满-->
+                            <!--</label>-->
+                        <!--</div>-->
+                        <!--<div class="radio" style="margin-left: 30px;">-->
+                            <!--<label>-->
+                                <!--<input type="radio" name="bookShowMode" value="h-fit" ng-model="chartBook.showMode.type">-->
+                                <!--等比缩放高度铺满-->
+                            <!--</label>-->
+                        <!--</div>-->
+                    </div>
+                </section>
+                <section>
+                    <header>
+                        <span>图册主题</span>
+                    </header>
+                    <div class="form-group">
+                        <table cellpadding="0" cellspacing="0">
+                            <colgroup>
+                                <col width="120px">
+                                <col>
+                            </colgroup>
+                            <tr>
+                                <td>页面背景色：</td>
+                                <td><input colorpicker value="value" ng-model="chartBook.background.color"></td>
+                            </tr>
+                            <tr>
+                                <td>页面背景图片：</td>
+                                <td>
+                                    <button class="btn btn-xs btn-default btn-icon" title="设置"
+                                            ng-click="setBackgroundImage()"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-xs btn-default btn-icon" title="清除"
+                                            ng-show="chartBook.background.image" ng-click="removeBackgroundImage()"
+                                            style="margin-left: 5px">
+                                        <i class="fa fa-trash-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!--<tr>-->
+                                <!--<td>页面背景透明度：</td>-->
+                                <!--<td><input type="range" min="0" max="1" step="0.1" ng-model="chartBook.background.transparency"></td>-->
+                                <!--<td>-->
+                                    <!--<input id="slider" ui-jq="slider" ui-options="{-->
+                                        <!--min: 0,-->
+                                        <!--max: 1,-->
+                                        <!--step: 0.1,-->
+                                        <!--value: 0,-->
+                                    <!--}" class="slider slider-horizontal" type="text" ng-model="chartBook.background.transparency">-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        </table>
+                    </div>
+                </section>
+                <section>
+                    <header>
+                        <span>配色方案</span>
+                        <!--<i class="icon icon-plus" style="float: right; "></i>-->
+                    </header>
+                    <div style="margin-top: 10px;">
+                        <dataviz-chartedit-theme config="themeConfig"></dataviz-chartedit-theme>
+                    </div>
+                </section>
+            </div>
+
+        </dv-accordion-group>
+    </dv-accordion>
+</div>

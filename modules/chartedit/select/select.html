@@ -1,0 +1,17 @@
+<!--<div class="cs-base">-->
+<div class="chartselect">
+    <div class="container-fluid">
+        <div class="row type" ng-repeat="(key, value) in groupLibrary">
+            <div class="padder-l-r-xs">{{key}}：</div>
+            <div ng-repeat="c in value">
+                <div class="col-md-4 padder-l-r-xs">
+                    <img class="img-size"
+                         ng-src="{{'http://www.sacadataviz.com'+c.thumbnail}}"
+                         ng-class="{selected:c.compId === chart.compId, gray: !inRecommend(c.compId)}"
+                         ng-click="select(c.compId, false)"
+                         >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

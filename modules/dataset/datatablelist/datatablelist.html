@@ -1,0 +1,32 @@
+<div class="vbox vbox-auto-xs vbox-auto-sm bg-white-only">
+    <div class="wrapper-xs b-b" style="background-color: #9AB0C5;height: 40px;">
+        <div class="text-center" style="font-size: 16px;margin-top: 3px;color: #FFF">
+            数据来源
+        </div>
+    </div>
+    <div class="wrapper-xs" style="background-color: #EDF2F6;">
+        <div class="input-group m-b-xxs bg-white-only">
+            <input type="text" class="form-control input-sm no-bg " style="width: 189px;"
+                   placeholder="请输入关键字" ng-model="tableNameFilter" ng-init="tableNameFilter=''" ng-keydown="$event.stopPropagation();">
+        </div>
+    </div>
+    <div class="wrapper" style="background-color: #EDF2F6;"><strong>{{dataSource.name}}</strong></div>
+    <div class="row-row" style="background-color: #EDF2F6;">
+        <div class="cell scrollable hover dz-srollbar">
+            <div class="cell-inner">
+                <table style="width:100%;">
+                    <tbody>
+                    <tr style="height: 25px;" ng-repeat="dztable in dataSource.tables | filter:{name:tableNameFilter}">
+                        <td ng-dblclick="addToDataSet(dztable)">
+                            <div class="dataset-dragtable" dataviz-draggable dataviz-dragend="dragend($event)"
+                                 dataviz-dragstart="dragstart($event,dztable)" title="{{dztable.name}}">
+                                {{dztable.name}}
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

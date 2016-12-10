@@ -1,0 +1,11 @@
+<div class="theme m-xs">
+    <div class="container-fluid">
+        <div class="row">
+            <div ng-repeat="theme in themeLibrary">
+                <div class="col-md-12 padder-l-r-xs text-center">
+                    <img class="img-size" ng-class="{selected:theme.id == config.currentThemeId}" ng-click="select(theme.id)" ng-src="{{'http://www.sacadataviz.com/'+theme.iconStore}}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

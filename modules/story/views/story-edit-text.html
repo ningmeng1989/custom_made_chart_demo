@@ -1,0 +1,23 @@
+<div>
+
+    <form name="_form" class="form-horizontal" ng-submit="submit(_form)">
+
+        <div class="modal-header bg-primary">
+            <button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
+            <h4 style="margin: 0px">文本编辑</h4>
+        </div>
+
+        <textarea ckeditor ng-model="form.content" class="form-control"></textarea>
+
+        <div class="modal-footer pos-rlt">
+            <div class="row">
+                <div class="text-center">
+                    <button type="button" class="btn btn-info" ng-click="submit()">确定</button>
+                    <button type="button" class="btn btn-default" ng-click="dismiss()">取消</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>

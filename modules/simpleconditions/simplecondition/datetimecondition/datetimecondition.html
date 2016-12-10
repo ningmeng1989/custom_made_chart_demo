@@ -1,0 +1,87 @@
+<div class="condition-header panel-heading">{{model.field.name}}</div>
+<div class="condition-body">
+
+    <div ng-if="model.context.type=='relativeTime'" style="padding: 0 5px">
+        <div class="form-group">
+            <div class="radio" style="padding: 5px 0">
+                <label class="i-checks i-checks-sm" style="float: left;">
+                    <input type="radio" name="optionsRadios" value="before"
+                           ng-model="model.context.relativeTime.item">
+                    <i></i>前
+                </label>
+                <input class="form-control" type="number" ng-model="model.context.relativeTime.before"
+                       ng-readonly="model.context.relativeTime.before!='before'"
+                       style="width: 60px;height:20px;float: left;padding: 0 3px;margin: 0 5px">{{currentType.name}}
+            </div>
+            <div class="radio" style="padding: 5px 0">
+                <label class="i-checks i-checks-sm">
+                    <input type="radio" name="optionsRadios" value="current"
+                           ng-model="model.context.relativeTime.item">
+                    <i></i>当前{{currentType.name}}
+                </label>
+            </div>
+            <div class="radio" style="padding: 5px 0">
+                <label class="i-checks i-checks-sm" style="float: left;">
+                    <input type="radio" name="optionsRadios" value="after"
+                           ng-model="model.context.relativeTime.item">
+                    <i></i>后
+                </label>
+                <input class="form-control" type="number" ng-model="model.context.relativeTime.after"
+                       ng-readonly="model.context.relativeTime.before!='after'"
+                       style="width: 60px;height:20px;float: left;padding: 0;margin: 0 5px">{{currentType.name}}
+            </div>
+        </div>
+    </div>
+    <div ng-if="model.context.type=='rangeTime'" style="padding-top: 10px;">
+        <div style="padding-left:10px;">开始时间：</div>
+        <div style="padding-left:30px;">{{model.context.rangeTime.startDateTime}}</div>
+        <div style="padding-left:10px;">结束时间：</div>
+        <div style="padding-left:30px;">{{model.context.rangeTime.endDateTime}}</div>
+        <div class="form-group dv-slider">
+            <dvslider ng-model="rangeTime.start"
+                            ng-model-range="rangeTime.end"
+                            floor="{{numberRange.min}}" ceiling="{{numberRange.max}}"></dvslider>
+        </div>
+    </div>
+    <div ng-if="model.context.type=='startTime'" style="padding-top: 10px;">
+        <div style="padding-left:10px;">开始时间：</div>
+        <div style="padding-left:30px;">{{model.context.startTime.dateTime}}</div>
+        <div class="form-group dv-slider">
+            <dvslider ng-model="startTime.datetime" floor="{{numberRange.min}}"
+                    ceiling="{{numberRange.max}}"></dvslider>
+        </div>
+    </div>
+    <div ng-if="model.context.type=='endTime'" style="padding-top: 10px;">
+        <div style="padding-left:10px;">结束时间：</div>
+        <div style="padding-left:30px;">{{model.context.endTime.dateTime}}</div>
+        <div class="form-group dv-slider">
+            <dvslider ng-model="endTime.datetime" floor="{{numberRange.min}}"
+                    ceiling="{{numberRange.max}}"></dvslider>
+        </div>
+    </div>
+    <div ng-if="model.context.type=='specialTime'">
+        <div class="form-group" style="padding:0 5px; ">
+            <div class="radio">
+                <label class="i-checks i-checks-sm">
+                    <input type="radio" name="optionsRadios" value="isNull"
+                           ng-model="model.context.specialTime.specialValue">
+                    <i></i>Null值
+                </label>
+            </div>
+            <div class="radio">
+                <label class="i-checks i-checks-sm">
+                    <input type="radio" name="optionsRadios" value="isNotNull"
+                           ng-model="model.context.specialTime.specialValue">
+                    <i></i>非Null值
+                </label>
+            </div>
+            <div class="radio">
+                <label class="i-checks i-checks-sm">
+                    <input type="radio" name="optionsRadios" value="all"
+                           ng-model="model.context.specialTime.specialValue">
+                    <i></i>所有值
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

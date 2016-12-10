@@ -1,0 +1,79 @@
+<!--维度-->
+<div class="field-content border" scroll>
+    <div class="module-name">维度</div>
+    <!--<hr class="module-divide">-->
+    <div ng-repeat="(key, value) in fields.dimensions">
+        <div ng-repeat="v in value track by $index" class="field-name">
+            <div
+                 ng-mousemove="mouseover=true"
+                 ng-mouseleave="mouseover=false"
+                 ng-dblclick="setHierarchyName(v)"
+                 dataviz-droppable
+                 dataviz-accept="{{accept}}"
+                 dataviz-drop="drop($event, {name: v.name, type: key, hierarchy: v.hierarchy})">
+                <div class="dataviz-field-draggable row"
+                     dataviz-draggable
+                     dataviz-dragstart="dragStart($event, {name: v.name, type: key,  hierarchy: v.hierarchy})">
+                    <div class="col-sm-10 ellipsis">
+                        <i ng-class="
+                            {
+                            'dz-icon-string': (key == 'string' && !v.hierarchy),
+                            'dz-icon-date': (key == 'time' && !v.hierarchy),
+                            'fa fa-globe': (key == 'map' && !v.hierarchy),
+                            'fa fa-sitemap': !!v.hierarchy
+                            }"></i>
+                            {{v.name}}
+                    </div>
+                    <div class="col-sm-2 no-padder" ng-click="deleteDimensionField({type: key, index: $index})">
+                        <i ng-class="{'fa fa-times': mouseover==true}"></i>
+                    </div>
+                </div>
+            </div>
+            <div ng-repeat="child in v.hierarchy" class="field-name">
+                <div ng-mousemove="mouseover=true"
+                     ng-mouseleave="mouseover=false">
+                    <div class="dataviz-field-draggable row"
+                        dataviz-draggable
+                        dataviz-dragstart="dragStart($event, {name: child.name, type: key})">
+                        <div class="col-sm-10 ellipsis">
+                            <i ng-class="
+                            {'dz-icon-string': key == 'string',
+                            'dz-icon-date': key == 'time',
+                            'fa fa-globe': key == 'map'}"
+                            ></i>{{child.name}}
+                        </div>
+                        <div class="col-sm-2 no-padder" ng-click="deleteDimensionField({type: key, index: $index})">
+                            <i ng-class="{'fa fa-times': mouseover==true}"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--度量-->
+<div class="field-content border" scroll>
+    <div class="module-name">度量</div>
+    <!--<hr class="module-divide">-->
+    <div ng-repeat="(key, value) in fields.measures">
+        <div ng-repeat="v in value track by $index"class="field-name">
+            <div
+                 ng-mousemove="mouseover=true"
+                 ng-mouseleave="mouseover=false"
+                 ng-dblclick="setHierarchyName(v)">
+                <div
+                    class="dataviz-field-draggable row"
+                    dataviz-draggable
+                    dataviz-dragstart="dragStart($event, {name: v.name, type: key})">
+                    <div class="col-sm-10 ellipsis">
+                        <i ng-class="{'dz-icon-number': key == 'number'}"></i>
+                        {{v.name}}
+                    </div>
+                    <div class="col-sm-2 no-padder" ng-click="deleteMeasureField({type: key, index: $index})">
+                        <i ng-class="{'fa fa-times': mouseover==true}"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

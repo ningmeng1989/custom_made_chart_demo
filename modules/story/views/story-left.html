@@ -1,0 +1,117 @@
+<div class="story-left" ng-controller="storyLeftCtrl">
+    <div class="story-resource-container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title" style="font-size: 14px">资源</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="dataviz-title text-center" dataviz-draggable dataviz-dragstart="titleDragStart($event)">
+                            <div class="story-resource-image story-title"></div>
+                            <span>标题</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="dataviz-draggable text-center" dataviz-draggable dataviz-dragstart="textDragStart($event)">
+                            <div class="story-resource-image story-text"></div>
+                            <span>正文</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="dataviz-draggable text-center" dataviz-draggable dataviz-dragstart="imageDragStart($event)">
+                            <div class="story-resource-image story-image"></div>
+                            <span>图片</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-4">
+                        <div class="dataviz-draggable text-center" dataviz-draggable dataviz-dragstart="pageDragStart($event)">
+                            <div class="story-resource-image story-page"></div>
+                            <span>网页</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="dataviz-draggable text-center" dataviz-draggable dataviz-dragstart="blankDragStart($event)">
+                            <div class="story-resource-image story-blank"></div>
+                            <span style="white-space: nowrap; margin-left: -3px;">空白块</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!--<table class="story-resource" cellspacing="0" cellpadding="0">-->
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<div>-->
+                            <!--<i class="fa fa-image"></i>-->
+                            <!--<span dataviz-draggable class="dataviz-title" dataviz-dragstart="titleDragStart($event)">标题</span>-->
+                            <!--</div>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<span dataviz-draggable class="dataviz-draggable" dataviz-dragstart="textDragStart($event)">正文</span>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<span dataviz-draggable class="dataviz-draggable" dataviz-dragstart="imageDragStart($event)">图片</span>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<span dataviz-draggable class="dataviz-draggable" dataviz-dragstart="pageDragStart($event)">网页</span>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<span dataviz-draggable class="dataviz-draggable" dataviz-dragstart="blankDragStart($event)">空白块</span>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+        </div>
+    </div>
+
+    <div class="story-resource-div">
+        <dv-accordion close-others="true">
+            <dv-accordion-group is-open="accordionGroupChart.open">
+                <dv-accordion-heading>
+                    图表
+                    <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': accordionGroupChart.open, 'fa-angle-right': !accordionGroupChart.open}"></i>
+                    <span class="story-accordion-button" title="显示方式" ng-click="toggleShow($event)"><i class="fa" ng-class="{'fa-list': showList, 'fa-th': !showList}"></i></span>
+                </dv-accordion-heading>
+
+                <div story-charts>
+                    <div class="story-charts padder p-t" ng-if="!showList">
+                        <div ng-repeat="chart in charts track by $index" class="story-chart"
+                             ng-class="{'checked': current.usedCharts[chart.id]}">
+                            <div dataviz-draggable class="dataviz-draggable w-full"
+                                 dataviz-dragstart="chartDragStart(chart,$event)">
+                                <img ng-src="{{'http://www.sacadataviz.com'+chart.imgUrl}}" class="story-chart-thumbnail">
+                                <span class="story-resource-name pos-abt" title="{{chart.name}}">{{chart.name}}</span>
+                            </div>
+                            <div class="story-resource-cover" title="{{chart.name}}">
+                                <span>已用</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="story-charts" ng-if="showList">
+                        <div ng-repeat="chart in charts track by $index" class="story-chart-brief" ng-class="{'checked': current.usedCharts[chart.id]}">
+                            <div dataviz-draggable class="dataviz-draggable w-full" dataviz-dragstart="chartDragStart(chart,$event)">
+                                <span class="story-resource-name" title="{{chart.name}}">{{chart.name}}</span>
+                            </div>
+                            <div class="story-resource-cover" title="{{chart.name}}">
+                                <span><i class="fa fa-check"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </dv-accordion-group>
+            <dv-accordion-group is-open="accordionGroupData.open">
+                <dv-accordion-heading>
+                    数据
+                    <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': accordionGroupData.open, 'fa-angle-right': !accordionGroupData.open}"></i>
+                </dv-accordion-heading>
+                <story-data ng-if="charts" chart-book="chartBook" charts="charts"></story-data>
+            </dv-accordion-group>
+        </dv-accordion>
+    </div>
+
+</div>

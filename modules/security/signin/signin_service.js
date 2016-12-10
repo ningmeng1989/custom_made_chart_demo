@@ -1,0 +1,6 @@
+/*!***********************************************
+ Copyright (c) 2016, Neusoft Inc.
+ All rights reserved
+ SaCa DataViz Version 3.1.0
+ ************************************************/
+angular.module("app.security.signin.service",[]).factory("checkUser",function(){function r(r,e,n){var t=r.length;return e>t?"密码长度至少为"+e+"位":t>n?"密码长度不能超过"+n+"位":void 0}function e(r){var e=/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/;return e.test(r)&&r.length>=6&&r.length<=64}return{check:function(n,t){if(!n.password)return"密码不能为空";var a=r(n.password,4,15);if(!a)return a;if("signup"==t){if(!n.email)return"Email缺省";if(!n.repeatPassword)return"重复密码缺省";if(!e(n.email))return"Email格式错误";if(n.password!==n.repeatPassword)return"密码不一致"}return null},checkEmail:function(r){return e(r)?void 0:"Email为空或格式错误"},checkPassword:function(e){if(!e)return"密码不能为空";var n=r(form.password,4,15);return n?void 0:n}}}).factory("UserInterceptor",["$q","$rootScope",function(r,e){return{request:function(r){return r},responseError:function(n){var t=(n.data,n.status);return 401==t&&e.$emit("userIntercepted","notLogin",n),r.reject(n)}}}]);

@@ -1,0 +1,27 @@
+{
+  "chartedit": {
+    "field": {
+      "DIMENSION": "维度",
+      "MEASURE": "度量",
+      "HIERARCHYNAME": "名称："
+    },
+    "control": {
+      "TAG": "标签",
+      "CONVERTDATA": "转换为数据视图",
+      "PREVIEW": "预览",
+      "SAVE": "保存",
+      "SHARE": "分享",
+      "CLEAR": "清除",
+      "REFRESH": "刷新",
+      "BACK": "返回"
+    }
+  },
+  "error": {
+    "e0101": "资源请求失败!"
+  },
+  "info": {
+    "chartedit": {
+      "HIERARCHY": "不同类型维度不支持创建维度层次！"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<div class="dz-srollbar scrollable simple-conditions panel b-a">
+    <div class="condition panel b-a" ng-repeat="condition in model">
+        <stringcondition ng-if="condition.field.type=='string'" model="condition"
+                         refresh-data="refreshData()"></stringcondition>
+        <numbercondition ng-if="condition.field.type=='number'" model="condition"
+                         refresh-data="refreshData()"></numbercondition>
+        <datetimecondition ng-if="condition.field.type=='datetime'" model="condition"
+                           refresh-data="refreshData()"></datetimecondition>
+    </div>
+</div>

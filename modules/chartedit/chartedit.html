@@ -1,0 +1,73 @@
+<div class="ce bg-white-only" ng-controller="chartEditCtrl">
+    <div class="breadcrumbs">
+        <div>
+            <span class="pull-left">
+                <breadcrumbs project="project" resource="chart.name"></breadcrumbs>
+            </span>
+            <span class="pull-right">
+                <menubar></menubar>
+            </span>
+        </div>
+    </div>
+    <div class="ce-all bg-white-only">
+        <!--左侧-->
+        <div class="pos-abt h-full">
+            <div class="ce-container-fl">
+                <div class="dataset">
+                    <div class="dataset-content" ng-click="setDataset()">
+                        <span><i class="fa fa-database m-r-sm"></i>{{dataset.name}}</span>
+                    </div>
+                </div>
+                <div class="field" dataviz-chartedit-field dataset="dataset"></div>
+            </div>
+            <div class="ce-container-fl">
+                <div class="databind" dataviz-chartedit-databind
+                     chart="chart"
+                     dataset="dataset"
+                     aggregations="databindAggregations">
+                </div>
+                <div class="filter">
+                    <!--<div class="m-xs">-->
+                        <!--<span class="wrapper-xs m-t-sm m-b-sm">过滤</span>-->
+                    <!--</div>-->
+                    <div class="module-name">过滤</div>
+                    <div class="m-xs">
+                        <div filterconditions filter-accept=".dataviz-field-draggable" model="conditions" refresh-data="refreshData()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--中间内容区-->
+        <div class="ce-container">
+            <div class="chart-background">
+                <div dataviz-chart style="width:100%;height: 100%;" chart="chart"></div>
+            </div>
+        </div>
+        <!--右侧设置区域-->
+        <div class="ce-container-fr border">
+            <dv-accordion close-others="true">
+                <dv-accordion-group is-open="true">
+                    <dv-accordion-heading>
+                        展现方式<i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.open, 'fa-angle-right': !status.open}"></i>
+                    </dv-accordion-heading>
+                    <div>
+                        <div dataviz-chartedit-chartselect chart="chart" chartedit-scroll></div>
+                    </div>
+                </dv-accordion-group>
+                <dv-accordion-group>
+                    <dv-accordion-heading >
+                        属性设置 <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.open, 'fa-angle-right': !status.open}"></i>
+                    </dv-accordion-heading>
+                    <div dataviz-chartedit-option chart="chart" chartedit-scroll></div>
+                </dv-accordion-group>
+                <dv-accordion-group>
+                    <dv-accordion-heading>
+                        配色方案<i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.open, 'fa-angle-right': !status.open}"></i>
+                    </dv-accordion-heading>
+                    <div dataviz-chartedit-theme theme-library="themeLibrary"config="themeConfig" chartedit-scroll></div>
+                </dv-accordion-group>
+            </dv-accordion>
+        </div>
+    </div>
+</div>

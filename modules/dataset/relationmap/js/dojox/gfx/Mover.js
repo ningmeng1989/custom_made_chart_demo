@@ -1,0 +1,6 @@
+/*!***********************************************
+ Copyright (c) 2016, Neusoft Inc.
+ All rights reserved
+ SaCa DataViz Version 3.1.0
+ ************************************************/
+dojo._hasResource["dojox.gfx.Mover"]||(dojo._hasResource["dojox.gfx.Mover"]=!0,dojo.provide("dojox.gfx.Mover"),dojo.declare("dojox.gfx.Mover",null,{constructor:function(o,t,s){this.shape=o,this.lastX=t.clientX,this.lastY=t.clientY;var e=this.host=s,n=document,i=dojo.connect(n,"onmousemove",this,"onFirstMove");this.events=[dojo.connect(n,"onmousemove",this,"onMouseMove"),dojo.connect(n,"onmouseup",this,"destroy"),dojo.connect(n,"ondragstart",dojo,"stopEvent"),dojo.connect(n,"onselectstart",dojo,"stopEvent"),i],e&&e.onMoveStart&&e.onMoveStart(this)},onMouseMove:function(o){var t=o.clientX,s=o.clientY;this.host.onMove(this,{dx:t-this.lastX,dy:s-this.lastY}),this.lastX=t,this.lastY=s,dojo.stopEvent(o)},onFirstMove:function(){this.host.onFirstMove(this),dojo.disconnect(this.events.pop())},destroy:function(){dojo.forEach(this.events,dojo.disconnect);var o=this.host;o&&o.onMoveStop&&o.onMoveStop(this),this.events=this.shape=null}}));

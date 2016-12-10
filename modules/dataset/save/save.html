@@ -1,0 +1,19 @@
+<div class="modal-header bg-dialog-model-header">
+    <h5 class="modal-title">{{saveName}}</h5>
+</div>
+<div class="modal-body ">
+    <form role="form" name="saveForm" class="ng-pristine ng-valid-maxlength ng-valid ng-valid-required">
+        <div class="form-group">
+            <label>名称:</label>
+            <input type="text"
+                   class="form-control ng-pristine ng-valid-maxlength ng-valid ng-valid-required"
+                   placeholder="请输入数据集名称" required="" ng-model="dataset.name" maxlength="25"
+                   ng-keydown="$event.stopPropagation();">
+        </div>
+    </form>
+</div>
+<div class="modal-footer" style="text-align: center;">
+    <button class="btn btn-info btn-modal-dialog" ng-click="ok()" ng-disabled="isOkBtnDisabled()">确认</button>
+    <button class="btn btn-default btn-modal-dialog" ng-click="cancel()">取消</button>
+</div>
+

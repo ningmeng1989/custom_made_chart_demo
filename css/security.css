@@ -1,0 +1,294 @@
+.vertical-center-top{
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%) ;
+    -moz-transform: translate(-50%, -50%) ;
+    -ms-transform: translate(-50%, -50%) ;
+    -o-transform: translate(-50%, -50%) ;
+    transform: translate(-50%, -50%);
+}
+
+.center-absolute{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%) ;
+    -moz-transform: translate(-50%, -50%) ;
+    -ms-transform: translate(-50%, -50%) ;
+    -o-transform: translate(-50%, -50%) ;
+    transform: translate(-50%, -50%);
+}
+
+.nav-tabs-alt .nav-tabs > li.active > a {
+    border-bottom-color: #00B0FF !important;
+}
+
+.nav-tabs > li.active > a{
+    color:#2D3B55 !important;
+    border: 1px solid transparent;
+    border-bottom-color: #2D3B55 !important;
+}
+.nav-tabs > li > a{
+    border-bottom-color: transparent !important;
+}
+
+.nav-tabs {
+    border-top: 1px solid transparent;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: white;
+}
+
+.navbar-brand  img.signin-logo {
+    width: 280px;
+    display: inline;
+    max-height: 70px;
+    margin-top: -4px;
+    vertical-align: middle;
+}
+
+
+ul.social-icons li {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background-image: url(../img/social-sprites.png);
+    background-repeat: no-repeat;
+    background-position: 0 100px;
+    display: inline-block;
+    margin: -1px 1px 5px 0;
+    padding: 0;
+    border-radius: 100%;
+    overflow: visible;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+ul.social-icons li.wechat {
+    background-position: 0 -1980px;
+}
+
+ul.social-icons li.weibo {
+    background-position: 0 -1920px;
+}
+
+ul.social-icons li a {
+    display: block;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+}
+
+.error span {
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    background: #fcc;
+    border: 1px solid #f33;
+    font-size: 12px;
+    line-height: 16px;
+    color: #600;
+    padding: 6px 10px 4px 10px;
+    border-radius: 5px;
+    opacity: .8;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.form-control:focus {
+    border-color: #7266ba;
+}
+
+#tips
+{
+    margin: 10px 4px 10px 0px;
+    width: 100%;
+}
+#tips span
+{
+    float: left;
+    width: 20%;
+    height: 4px;
+    color: #fff;
+    overflow: hidden;
+    background: #ccc;
+    margin-right: 2px;
+    line-height: 20px;
+    text-align: center;
+}
+#tips.s1 .active
+{
+    background: #f30;
+}
+#tips.s2 .active
+{
+    background: #fc0;
+}
+#tips.s3 .active
+{
+    background: #cc0;
+}
+#tips.s4 .active
+{
+    background: #090;
+}
+
+.icon-sign{
+    display: inline-block;
+}
+.icon-sign-sina {
+    width: 126px;
+    height: 24px;
+    background-image: url("../img/icon_signin_weibo_24.png");
+}
+
+.icon-sign-qq {
+    width: 120px;
+    height: 24px;
+    background-image: url("../img/icon_signin_qq_24.png");
+}
+
+.icon-sign-weixin {
+    width: 118px;
+    height: 24px;
+    background-image: url("../img/icon24_wx_button.png");
+}
+
+.left-choice-list {
+    position: relative;
+    margin-top: 100px;
+    width: 240px;
+    display: inline-block;
+    vertical-align: top;
+    border-right: 1px solid #d9d9d9;
+}
+
+.right-login-box {
+    position: relative;
+    margin-top: 100px;
+    width: 300px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.set .icon-weibo {
+    background-position: -1px -135px;
+}
+.set .icon-qq {
+    background-position: -1px -42px;
+}
+
+.set .icon-weibo2 {
+    background-position: 0 0;
+}
+.set .icon, .set .icon-weixin {
+    display: block;
+    height: 24px;
+    margin-right: 50px;
+    margin-bottom: 10px;
+    padding-left: 34px;
+    line-height: 24px;
+    color: #888;
+}
+.set .icon {
+    background: url(../img/weiboqq24.png) 0 0 no-repeat;
+}
+.set .icon-weixin {
+    background: url(../img/weixin_new.png) 0 0 no-repeat;
+}
+
+.set .icon span {
+    display:inline-block;
+    font-size:16px;
+    vertical-align:bottom;
+}
+.set .icon a {
+    color:#888;
+    vertical-align:bottom;
+}
+.set .icon a:hover {
+    color:#f30;
+}
+.set .icon-weibo {
+    background: url(../img/weiboqq24.png) 0 0 no-repeat;
+    background-position:-1px -1px;
+}
+.set .icon-qq {
+    background: url(../img/weiboqq24.png) 0 0 no-repeat;
+    background-position:-1px -42px;
+}
+
+.set .icon-crt-weibo {
+    background: url(../img/weiboqq24.png) 0 0 no-repeat;
+    background-position:-1px -135px;
+}
+.set .icon-crt-qq {
+    background: url(../img/weiboqq24.png) 0 0 no-repeat;
+    background-position:-1px -183px;
+}
+
+.set .icon-weixin {
+    background: url(../img/weixin_new.png) 0 0 no-repeat;
+    background-position: 0 0;
+}
+.set .icon-crt-weixin {
+    background: url(../img/weixin_new.png) 0 0 no-repeat;
+    background-position: 0 -33px;
+}
+.set .connectbox {
+    _width:720px;
+    overflow:hidden;
+}
+.f-mb10 {
+    margin-bottom:10px;
+}
+.f-mb20 {
+    margin-bottom:20px;
+}
+.bindtag,.cancletag{
+    font-size: 14px;
+}
+
+.sign-icon-qq{
+    background: url(../img/qq.png) 0 0 no-repeat;
+    background-size: 32px 32px;
+    width: 32px;
+    height: 32px;
+}
+.sign-icon-weibo{
+    background: url(../img/weibo_signin.png) 0 0 no-repeat;
+    background-size: 32px 32px;
+    width: 32px;
+    height: 32px;
+}
+.sign-icon-wechat{
+    background: url(../img/wechat.png) 0 0 no-repeat;
+    background-size: 32px 32px;
+    width: 32px;
+    height: 32px;
+}
+
+input#login:-webkit-autofill,
+input#signin_password:-webkit-autofill {
+    -webkit-text-fill-color: #adb4c7 !important;
+    transition: background-color 9999999999s ease-in-out 0s;
+}
+
+.signin-input{
+    border-radius: 0;
+    color: #adb4c7;
+    padding: 0 5px;
+    margin: 20px 0;
+    border: 0 none !important;
+    background-color: transparent !important;
+    border-bottom: 1px solid #adb4c7 !important;
+}
+.subtitle{
+    font-size: 15px;
+    color: #adb4c7;
+    margin: 20px 0;
+}
+.sigin-box{
+    background-color: rgba(1, 1, 20, 0.4);
+    border-radius: 2px;
+}

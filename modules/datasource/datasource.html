@@ -1,0 +1,39 @@
+<div class="vbox vbox-auto-xs vbox-auto-sm bg-white-only" ng-controller="datasourceCtrl">
+    <div class="wrapper b-b app-toolbar" >
+        <span class="pull-left">
+            <breadcrumbs project="project"></breadcrumbs>
+        </span>
+        <span class="pull-right" >
+            <a class="btn no-shadow bar-btn" title="新建" ng-click="createDataSource()"><i class="fa fa-plus " ></i></a>
+            <a class="btn no-shadow bar-btn" title="编辑" ng-click="editDataSource()"><i class="dz-icon-edit" ></i></a>
+            <a class="btn no-shadow bar-btn" title="删除" ng-click="deleteDataSource()"><i class="dz-icon-delete" ></i></a>
+            <a class="btn no-shadow bar-btn" title="返回" ng-click="goBack()"><i class="dz-icon-back" ></i></a>
+        </span>
+    </div>
+    <div class="row-row bg-white-only">
+        <div class="cell dz-srollbar scrollable hover">
+            <div class="cell-inner">
+                <div class="wrapper-md">
+                    <div ng-repeat="source in datasourcelist" style="margin: 20px;float: left;">
+                        <div ng-class="{true:'datasourceSelected',false:'datasource'}[$index==selectedIndex]"
+                             style="background-size: 130px 130px;width: 130px;height: 130px;padding: 7px 13px;"
+                             ng-click="selectClick($index)" title="{{source.name}}">
+                            <img ng-if="source.access.db_type=='h2_tcp'" src="img/h2.png"/>
+                            <img ng-if="source.access.db_type=='h2_embed'" src="img/h2.png"/>
+                            <img ng-if="source.access.db_type=='postgres'" src="img/postgres.png"/>
+                            <img ng-if="source.access.db_type=='mysql'" src="img/mysql.png"/>
+                            <img ng-if="source.access.db_type=='sqlserver'" src="img/sqlserver.png"/>
+                            <img ng-if="source.access.db_type=='oracle'" src="img/oracle.png"/>
+                        </div>
+                        <p class="text-center" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 120px">{{source.name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="padder b-t text-center">
+        <div class="m-xs">
+            <button class="btn btn-info btn-next" ng-disabled="selectedIndex==-1" ng-click="next()">下一步</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="condition-header">{{model.field.name}}</div>
+<div class="condition-body">
+    <div ng-if="model.context.range.type=='twoWay'" style="padding-top: 10px;">
+        <div style="padding-left:10px;">最小值：{{model.context.range.twoWay.min}}</div>
+        <div style="padding-left:10px;">最大值：{{model.context.range.twoWay.max}}</div>
+        <div class="form-group dv-slider">
+            <dvslider ng-model="model.context.range.twoWay.min"
+                    ng-model-range="model.context.range.twoWay.max"
+                    floor="{{range.min}}" ceiling="{{range.max}}"></dvslider>
+        </div>
+    </div>
+    <div ng-if="model.context.range.type=='atMost'" style="padding-top: 10px;">
+        <div style="padding-left:10px;">最大值：{{model.context.range.atMost.max}}</div>
+        <div class="form-group dv-slider">
+            <dvslider ng-model="model.context.range.atMost.max" floor="{{range.min}}"
+                    ceiling="{{range.max}}"></dvslider>
+        </div>
+    </div>
+    <div ng-if="model.context.range.type=='atLeast'" style="padding-top: 10px;">
+        <div style="padding-left:10px;">最小值：{{model.context.range.atLeast.min}}</div>
+        <div class="form-group dv-slider">
+            <dvslider ng-model="model.context.range.atLeast.min" floor="{{range.min}}"
+                    ceiling="{{range.max}}"></dvslider>
+        </div>
+    </div>
+    <div ng-if="model.context.range.type=='special'" style="padding:0 5px; ">
+        <div class="form-group">
+            <div class="radio">
+                <label class="i-checks i-checks-sm">
+                    <input type="radio" name="specialValueRadios" value="isNull"
+                           ng-model="model.context.range.special.value">
+                    <i></i>Null值
+                </label>
+            </div>
+            <div class="radio">
+                <label class="i-checks i-checks-sm">
+                    <input type="radio" name="specialValueRadios" value="isNotNull"
+                           ng-model="model.context.range.special.value">
+                    <i></i>非Null值
+                </label>
+            </div>
+            <div class="radio">
+                <label class="i-checks i-checks-sm">
+                    <input type="radio" name="specialValueRadios" value="all"
+                           ng-model="model.context.range.special.value">
+                    <i></i>所有值
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

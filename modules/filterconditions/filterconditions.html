@@ -1,0 +1,14 @@
+<div class="tagsinput dz-srollbar scrollable hover" style="height: 100%;width: 100%;" dataviz-droppable dataviz-drop="ondrop($event)"
+     dataviz-accept="{{filterAccept}}" ng-click="tagsinputClick()">
+    <span class="ui-select-match-item btn btn-default btn-xs" ng-repeat="condition in model"
+          ng-click="edit(condition)" style="margin: 2px">
+        <span class="close ui-select-match-close" style="padding-bottom: 2px"
+              ng-click="remove(condition);$event.stopPropagation()">&nbsp;×</span>
+        <div title="{{condition.caption}}"
+             style="line-height: 1.9;max-width:150px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;">
+            {{condition.caption}}
+        </div>
+    </span>
+    <input type="text" placeholder="拖拽至此添加过滤" style="height:27px;margin:1px;width: 10em !important;" maxlength="0"
+           ng-keydown="inputKeydown($event)"/>
+</div>

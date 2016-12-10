@@ -1,0 +1,28 @@
+<div>
+    <form name="_form" class="form-horizontal" ng-submit="submit(_form)">
+        <div class="modal-header bg-primary">
+            <button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
+            <h4 style="margin: 0px">{{form.header}}</h4>
+        </div>
+
+        <div class="modal-body">
+            <div class="panel-body">
+                <div class="row">
+                    <span class="radio-defined col-xs-4" ng-repeat="data in datasetList track by $index">
+                        <input type="radio" id="{{$index}}" name="optionsRadios">
+                        <label ng-click="selectDataset(data.id)" for="{{$index}}">
+                            {{data.name}}
+                        </label>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="text-center">
+                <button type="submit" class="btn btn-info">确定</button>
+                <button type="button" class="btn btn-default" ng-click="dismiss()">取消</button>
+            </div>
+        </div>
+    </form>
+</div>

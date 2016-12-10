@@ -1,0 +1,32 @@
+<div class="pos-rlt">
+    <!--<div class="story-data-bindings" dataviz-droppable dataviz-accept=".story-data-binding" dataviz-dragenter="bindingDragEnter($event)" dataviz-dragleave="bindingDragLeave($event)">-->
+        <!--<div ng-repeat="binding in chartBook.dataSetBindings" class="story-data-binding" ind="{{$index}}" dataviz-draggable drag-options="{-->
+            <!--helper:'clone',opacity:0.5,revert:false,delay:100-->
+        <!--}">-->
+            <!--<span>{{dataSetMap[binding.l.dataset] + '.' + binding.l.field}}</span>-->
+            <!--<i class="fa fa-arrows-h"></i>-->
+            <!--<span> {{dataSetMap[binding.r.dataset] + '.' + binding.r.field}}</span>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <section ng-repeat="dataSet in dataSets" ng-init="$parentIndex=$index" class="section{{$parentIndex}}">
+        <header class="story-data-header">{{dataSet.name}}</header>
+        <div ng-repeat="field in dataSet.fields" class="story-data-div" ind="{{$parentIndex + '-' + $index}}"
+             dataviz-droppable dataviz-accept=".story-data" dataviz-not-accept=".section{{$parentIndex}} .story-data" dataviz-dragenter="dataDragEnter($event)"
+             dataviz-dragleave="dataDragLeave($event)" dataviz-drop="dataDrop($event)">
+            <div class="col-sm-10 no-padder ellipsis story-data" dataviz-draggable dataviz-dragstart="dataDragStart($event, field, dataSet)">
+                <i ng-class="
+                {
+                'dz-icon-string': (field.type == 'string'),
+                'dz-icon-date': (field.type == 'datetime'),
+                'dz-icon-map': (field.type == 'map'),
+                'dz-icon-number': (field.type == 'number')
+                }" class="fa">
+                </i>
+                {{field.name}}
+            </div>
+            <div class="col-sm-2 no-padder"><i class="fa fa-link" ng-if="hasBinding(dataSet, field)" ng-click="showBindings(dataSet, field)"></i></div>
+        </div>
+    </section>
+
+</div>

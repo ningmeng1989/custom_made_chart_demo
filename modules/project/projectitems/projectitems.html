@@ -1,0 +1,219 @@
+<div class="vbox vbox-auto-xs vbox-auto-sm bg-white-only" ng-controller="projectItemsCtrl">
+<div class="wrapper b-b app-toolbar">
+        <span class="pull-left">
+                <breadcrumbs project="project"></breadcrumbs>
+        </span>
+        <span class="pull-right">
+            <a class="btn no-shadow bar-btn" ng-click="startDelete()"><i class="dz-icon-delete"></i></a>
+            <a class="btn no-shadow bar-btn" ng-click="goBack()" title="返回"><i class="dz-icon-back"></i></a>
+        </span>
+</div>
+<div class="wrapper text-center btn-circular-bar">
+    <button class="btn m-b-xs w-xs btn-info btn-circular" ng-click="newDataset()" title="新建数据集">
+        <span style="font-size:18px;"><i class="dz-icon-adddata"></i></span>
+        <div ng-if="!scrollsmall.value">建数据</div>
+    </button>
+    <button class="btn m-b-xs w-xs btn-info btn-circular" ng-click="newChart()" title="新建图表">
+        <span style="font-size:18px;"><i class="dz-icon-addchart"></i></span>
+        <div ng-if="!scrollsmall.value">建图表</div>
+    </button>
+    <button class="btn m-b-xs w-xs btn-info btn-circular" ng-click="newStory()" title="新建图册">
+        <span style="font-size:19px;"><i class="dz-icon-addbook"></i></span>
+        <div ng-if="!scrollsmall.value">建图册</div>
+    </button>
+</div>
+<div class="row-row">
+    <div class="cell dz-srollbar scrollable">
+        <div class="cell-inner">
+            <div class="wrapper-md" style="padding: 0 30px;">
+                <div id="itemsContainer">
+                    <div>
+                        <span>数据集({{datasetList.length}})</span>
+                            <span ng-if="!showAll.dataset" style="float: right;cursor: pointer;margin-right: 20px;"
+                                  ng-click="showAllDataset()">全部</span>
+                            <span ng-if="showAll.dataset" style="float: right;cursor: pointer;margin-right: 20px;"
+                                  ng-click="showRowDataset()">收起</span>
+
+                        <div style=" border-top:1px solid #CCC;min-height: 161px;">
+                            <div class="portfolio-item portfolio-thumbnail project-item"
+                                 ng-repeat="dataset in datasetList | orderBy: '-createTime' | limitTo:datasetNum"
+                                 style="margin: 10px;">
+                                <div class="thumb-info">
+                                    <div class="clearfix text-center m-t"
+                                         style="padding-top: 30px;margin: 0;width: 200px;height: 140px">
+                                        <div class="inline">
+                                            <div class="thumb-xl" style="height:130px;overflow: hidden">
+                                                <h4 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                                                    {{dataset.name}}</h4>
+                                                <h5>{{dataset.createTime}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="thumb-info-action item-info-action" ng-click="editDataset(dataset)"
+                                         ng-if="!delete.active">
+                                        <div class="thumb-info-action-icon text-center" style="margin: 0 55px;">
+                                            <div class="text-center item-btn"
+                                                 ng-click="editDataset(dataset);$event.stopPropagation();">
+                                                <div class="item-btn-circular">
+                                                    <i class="dz-icon-edit item-btn-edit"></i>
+                                                </div>
+                                                <div class="item-btn-title">编辑</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="delete-info-action" ng-if="delete.active"
+                                         ng-class="{true:'delete-action-select'}[dataset.delete]"
+                                         ng-click="checkDataset(dataset)">
+                                        <div class="text-center" style="padding-top: 55px;height: 140px;color:#FFF">
+                                            <div ng-if="!dataset.delete" style="margin-top: 5px;">点击选择</div>
+                                            <i ng-if="dataset.delete" class="dz-icon-selected"
+                                               style="font-size: 25px;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-more text-center" ng-if="!showAll.dataset && datasetList.length > num" ng-click="showAllDataset()">
+                                <div class="text">...展开全部</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span>图表({{chartList.length}})</span>
+                            <span ng-if="!showAll.chart" style="float: right;cursor: pointer;margin-right: 20px;"
+                                  ng-click="showAllChart()">全部</span>
+                            <span ng-if="showAll.chart" style="float: right;cursor: pointer;margin-right: 20px;"
+                                  ng-click="showRowChart()">收起</span>
+
+                        <div style=" border-top:1px solid #CCC;min-height: 161px;">
+                            <div class="portfolio-item portfolio-thumbnail project-item project-item"
+                                 ng-repeat="chart in chartList | orderBy: '-createTime' | limitTo:chartNum"
+                                 style="margin: 10px;">
+                                <div class="thumb-info">
+                                    <div class="clearfix text-center m-t"
+                                         style="padding-top: 30px;margin: 0;width: 200px;height: 140px">
+                                        <div class="inline">
+                                            <div class="thumb-xl"
+                                                 style="height:100px;overflow: hidden">
+                                                <h4 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                                                    {{chart.name}}</h4>
+                                                <h5>{{chart.createTime}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="thumb-info-action item-info-action" ng-if="!delete.active">
+                                        <div class="thumb-info-action-icon text-center">
+                                            <div class="text-center item-btn"
+                                                 ng-click="playChart(chart);$event.stopPropagation();">
+                                                <div class="item-btn-circular">
+                                                    <i class="dz-icon-preview item-btn-play"></i>
+                                                </div>
+                                                <div class="item-btn-title">播放</div>
+                                            </div>
+                                            <div class="text-center item-btn"
+                                                 ng-click="shareChart(chart);$event.stopPropagation();">
+                                                <div class="item-btn-circular">
+                                                    <i class="dz-icon-share item-btn-share"></i>
+                                                </div>
+                                                <div class="item-btn-title">分享</div>
+                                            </div>
+                                            <div class="text-center item-btn"
+                                                 ng-click="editChart(chart);$event.stopPropagation();">
+                                                <div class="item-btn-circular">
+                                                    <i class="dz-icon-edit item-btn-edit"></i>
+                                                </div>
+                                                <div class="item-btn-title">编辑</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="delete-info-action" ng-if="delete.active"
+                                         ng-class="{true:'delete-action-select'}[chart.delete]"
+                                         ng-click="checkChart(chart)">
+                                        <div class="text-center" style="padding-top: 55px;height: 140px;color:#FFF">
+                                            <div ng-if="!chart.delete" style="margin-top: 5px;">点击选择</div>
+                                            <i ng-if="chart.delete" class="dz-icon-selected"
+                                               style="font-size: 25px;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-more text-center" ng-if="!showAll.chart && chartList.length > num" ng-click="showAllChart()">
+                                <div class="text">...展开全部</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span>图册({{storyList.length}})</span>
+                            <span ng-if="!showAll.story" style="float: right;cursor: pointer;margin-right: 20px;"
+                                  ng-click="showAllStory()">全部</span>
+                            <span ng-if="showAll.story" style="float: right;cursor: pointer;margin-right: 20px;"
+                                  ng-click="showRowStory()">收起</span>
+
+                        <div style="border-top:1px solid #CCC;min-height: 161px;">
+                            <div class="portfolio-item portfolio-thumbnail project-item"
+                                 ng-repeat="story in storyList | orderBy: '-createdOn' | limitTo:storyNum"
+                                 style="margin: 10px;">
+                                <div class="thumb-info">
+                                    <div class="clearfix text-center m-t"
+                                         style="padding-top: 30px;margin: 0;width: 200px;height: 140px">
+                                        <div class="inline">
+                                            <div class="thumb-xl"
+                                                 style="height:100px;overflow: hidden">
+                                                <h4 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                                                    {{story.name}}</h4>
+                                                <h5>{{story.createdOn}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="thumb-info-action item-info-action" ng-if="!delete.active">
+                                        <div class="thumb-info-action-icon text-center">
+                                            <div class="text-center item-btn"
+                                                 ng-click="playStory(story);$event.stopPropagation();">
+                                                <div class="item-btn-circular">
+                                                    <i class="dz-icon-preview item-btn-play"></i>
+                                                </div>
+                                                <div class="item-btn-title">播放</div>
+                                            </div>
+                                            <div class="text-center item-btn"
+                                                 ng-click="shareStory(story);$event.stopPropagation();">
+                                                <div class="item-btn-circular">
+                                                    <i class="dz-icon-share item-btn-share"></i>
+                                                </div>
+                                                <div class="item-btn-title">分享</div>
+                                            </div>
+                                            <div class="text-center item-btn"
+                                                 ng-click="editStory(story);$event.stopPropagation();">
+                                                <div class="item-btn-circular">
+                                                    <i class="dz-icon-edit item-btn-edit"></i>
+                                                </div>
+                                                <div class="item-btn-title">编辑</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="delete-info-action" ng-if="delete.active"
+                                         ng-class="{true:'delete-action-select'}[story.delete]"
+                                         ng-click="checkStory(story)">
+                                        <div class="text-center" style="padding-top: 55px;height: 140px;color:#FFF">
+                                            <div ng-if="!story.delete" style="margin-top: 5px;">点击选择</div>
+                                            <i ng-if="story.delete" class="dz-icon-selected"
+                                               style="font-size: 25px;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-more text-center" ng-if="!showAll.story && storyList.length > num" ng-click="showAllStory()">
+                                <div class="text">...展开全部</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="padder b-t text-center" ng-if="delete.active" style="background-color: #E9EEF1;">
+    <button class="btn btn-danger" ng-disabled="isDelete()" ng-click="deleteOK()"
+            style="padding: 6px 20px;margin: 5px;">确定
+    </button>
+    <button class="btn" ng-click="deleteCancel()" style="padding: 6px 20px;margin: 5px;">取消</button>
+</div>
+</div>

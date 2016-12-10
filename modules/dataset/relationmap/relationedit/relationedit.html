@@ -1,0 +1,95 @@
+<div class="modal-header bg-dialog-model-header">
+    <h4 style="margin: 0px">关联设置</h4>
+</div>
+<div class="modal-body">
+    <div class="form-group" style="height: 50px;">
+        <div style=" height: 100%;position: relative;">
+            <div style="height: 100%;width: 190px;position: relative;float:left;background-color: #E9EEF1;padding-top: 5px;">
+                <div style="text-align: center;">{{datatableA.name}}</div>
+                <div style="text-align: center;">ID:{{datatableA.id}}</div>
+            </div>
+            <div style="height: 100%;width: 188px;position: relative;float:left;">
+                <div class="relation-point" style="left: -8px;"></div>
+                <hr style="border-top:1px solid #0BE5C3;margin: 24px 0;"/>
+                <span class="icon-join" style="position: absolute;left: 80px;top: 15px"
+                      ng-class="{'join-left':relation.type=='left','join-inner':relation.type=='inner','join-right':relation.type=='right','join-outer':relation.type=='outer'}"></span>
+                <div class="relation-point" style="right: -8px;"></div>
+            </div>
+            <div style="height: 100%;width: 190px;position: relative;float:left;background-color: #E9EEF1;padding-top: 5px;">
+                <div style="text-align: center;">{{datatableB.name}}</div>
+                <div style="text-align: center;">ID:{{datatableB.id}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="join-btns">
+            <div class="btn-join" ng-class="{true:'btn-join-active'}[relation.type=='left']" ng-click="relation.type='left'">
+                <span class="icon-join" ng-class="{true:'join-left-select',false:'join-left'}[relation.type=='left']"></span>
+            </div>
+            <div class="btn-join" ng-class="{true:'btn-join-active'}[relation.type=='inner']" ng-click="relation.type='inner'">
+                <span class="icon-join" ng-class="{true:'join-inner-select',false:'join-inner'}[relation.type=='inner']"></span>
+            </div>
+            <div class="btn-join" ng-class="{true:'btn-join-active'}[relation.type=='right']" ng-click="relation.type='right'">
+                <span class="icon-join" ng-class="{true:'join-right-select',false:'join-right'}[relation.type=='right']"></span>
+            </div>
+            <div class="btn-join" ng-class="{true:'btn-join-active'}[relation.type=='outer']" ng-click="relation.type='outer'">
+                <span class="icon-join" ng-class="{true:'join-outer-select',false:'join-outer'}[relation.type=='outer']"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" style="height: 200px;">
+        <div style="height: 35px;margin-bottom: 6px; background-color:#9AB0C5;padding: 7px 20px;font-size: 16px;color: #FFF">
+            关联字段
+        </div>
+        <div style="margin-bottom: 5px;max-height: 130px;overflow: auto;">
+            <div ng-repeat=" relationDetail in relation.relationDetails" style="height:35px;padding: 5px 0;">
+                <span style="width: 180px;height:100%;float:left;text-align: center;">
+                    <a ng-if="fieldAEditIndex!=$index" ng-click="editFieldA($index)"
+                       style="color: #000000;line-height: 25px;font-size: 13px;">{{relationDetail.fieldA}}</a>
+                    <span ng-if="fieldAEditIndex==$index" style="width: 140px;float:left;margin-left: 25px;">
+                    <!--<span style="width: 140px;float:left;margin-left: 25px;">-->
+                        <select class="form-control ng-pristine ng-valid ng-valid-required ng-touched" name="fieldA"
+                                set-focus
+                                required="" ng-model="relationDetail.fieldA" ng-blur="blurFieldA($index)"
+                                style="height: 24px;padding-top: 1px;padding-bottom: 1px;font-size: 13px;">
+                            <option ng-repeat="item in datatableA.items" value="{{item.id}}"
+                                    ng-selected="item.id==relationDetail.fieldA">{{item.name?item.name:item.id}}
+                            </option>
+                        </select>
+                    </span>
+                </span>
+                <span style="width: 190px;height:100%;float:left;text-align: center;line-height: 25px;">{{relationDetail.type}}</span>
+                <span style="width: 170px;height:100%;float:left;text-align: center;">
+                    <a ng-if="fieldBEditIndex!=$index" ng-click="editFieldB($index)"
+                       style="color: #000000;line-height: 25px;font-size: 13px;">{{relationDetail.fieldB}}</a>
+                    <span ng-if="fieldBEditIndex==$index" style="width: 140px;float:right;">
+                    <!--<span style="width: 140px;float:right;">-->
+                        <select class="form-control ng-pristine ng-valid ng-valid-required ng-touched" name="fieldB"
+                                set-focus
+                                required="" ng-model="relationDetail.fieldB" ng-blur="blurFieldB($index)"
+                                style="height: 24px;padding-top: 1px;padding-bottom: 1px;font-size: 13px;">
+                            <option ng-repeat="item in datatableB.items" value="{{item.id}}"
+                                    ng-selected="item.id==relationDetail.fieldB">{{item.name?item.name:item.id}}
+                            </option>
+                        </select>
+                    </span>
+                </span>
+                <span style="float:right;margin-right: 5px;padding: 5px 0;">
+                    <a ng-click="deleteRelationDetail($index)">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                </span>
+            </div>
+        </div>
+
+        <div ng-show="isAddBtnShow()" ng-click="addEmptyRelationDetail()"
+             style="height: 35px;padding: 8px 12px 8px 12px;background-color:#E9EEF1;color: #808080;cursor: pointer;text-align: center;">
+            点击添加新的关联字段
+        </div>
+    </div>
+</div>
+<div class="modal-footer" style="text-align: center;">
+    <button class="btn btn-info btn-modal-dialog" ng-click="ok()" ng-disabled="isOkBtnDisabled()">确认</button>
+    <button class="btn btn-default btn-modal-dialog" ng-click="cancel()">取消</button>
+</div>

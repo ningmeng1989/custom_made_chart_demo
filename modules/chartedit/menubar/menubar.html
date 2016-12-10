@@ -1,0 +1,55 @@
+<ul class="operation">
+    <li class="no-padder">
+        <div class="pos-rlt wrapper-xs" dropdown>
+            <a href title="保存" ng-click="save()">
+                <i class="fa fa-save"></i>
+            </a>
+            <a href class="dropdown-toggle" style="padding-left: 0" dropdown-toggle aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" style="min-width: 0" role="menu">
+                <li>
+                    <a href ng-click="rename()">重命名</a>
+                </li>
+                <li>
+                    <a href ng-click="copy()">另存为</a>
+                </li>
+            </ul>
+        </div>
+    </li>
+    <li>
+        <a href ng-click="clear()" title="{{'chartedit.control.CLEAR' | translate }}">
+            <i class="fa fa-times"></i>
+        </a>
+    </li>
+    <li>
+        <a href ng-click="refresh()" title="{{'chartedit.control.REFRESH' | translate }}">
+            <i class="fa fa-refresh"></i>
+        </a>
+    </li>
+    <li>
+        <a href ng-click="addTag()" title="{{'chartedit.control.TAG' | translate }}">
+            <i class="fa fa-tag"></i>
+        </a>
+    </li>
+    <li>
+        <a href ng-click="convertData()" title="{{'chartedit.control.CONVERTDATA' | translate }}">
+            <i ng-class="{'fa fa-reorder': isChart, 'fa fa-bar-chart-o': !isChart}"></i>
+        </a>
+    </li>
+    <li>
+        <a href ng-click="preview()" title="{{'chartedit.control.PREVIEW' | translate }}">
+            <i class="fa fa-play"></i>
+        </a>
+    </li>
+    <li>
+        <a href ng-click="share()" title="{{'chartedit.control.SHARE' | translate }}">
+            <i class="fa fa-share-alt"></i>
+        </a>
+    </li>
+    <li>
+        <a href ng-click="back()" title="{{'chartedit.control.BACK' | translate }}">
+            <i class="fa fa-mail-forward"></i>
+        </a>
+    </li>
+</ul>

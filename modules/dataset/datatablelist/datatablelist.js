@@ -1,0 +1,6 @@
+/*!***********************************************
+ Copyright (c) 2016, Neusoft Inc.
+ All rights reserved
+ SaCa DataViz Version 3.1.0
+ ************************************************/
+angular.module("app.dataset.datatablelist",[]).factory("datatableService",["$http","$q",function(a,t){return{getDataSource:function(e){var r=t.defer();return a({method:"GET",url:charts_server+"/service/datasource/datatables",params:{datasourceId:e}}).success(function(a,t,e,d){a.error?r.reject(a):r.resolve(a)}).error(function(a,t,e,d){r.reject(a)}),r.promise}}}]).directive("datatablelist",["$rootScope","$stateParams","datatableService",function(a,t,e){return{restrict:"AE",scope:{config:"="},templateUrl:"modules/dataset/datatablelist/datatablelist.html",replace:!0,link:function(t){t.$watch("config.dataSourceIds",function(a){if(a&&a&&a.length>0){var r=a[0];e.getDataSource(r).then(function(a){t.dataSource=a.object},function(a){t.dataSource={name:"未找到数据源",tables:[]}})}}),t.dragstart=function(a,t){a.setData("datatable",{datasourceId:t.dataSourceId,datatableId:t.id})},t.addToDataSet=function(t){a.$broadcast("addDataTable",{datasourceId:t.dataSourceId,datatableId:t.id})}}}}]);

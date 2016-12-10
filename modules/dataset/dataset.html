@@ -1,0 +1,78 @@
+<div class="vbox vbox-auto-xs vbox-auto-sm bg-white-only" ng-controller="dataSetCtrl">
+    <div class="wrapper b-b app-toolbar">
+        <span class="pull-left">
+                <breadcrumbs project="project" resource="dataset.name"></breadcrumbs>
+        </span>
+        <span class="pull-right">
+            <span class="pos-rlt wrapper-xs bar-btn" dropdown style="padding: 6px 0 9px 3px;border-radius: 2px">
+                <a href title="保存" ng-click="saveDataSetInfo('保存')">
+                    <i class="fa fa-save"></i>
+                </a>
+                <a href class="dropdown-toggle" style="padding-left: 0" dropdown-toggle aria-haspopup="true"
+                   aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" style="min-width: 0" role="menu">
+                    <li>
+                        <a href ng-click="saveDataSetInfo('重命名')">重命名</a>
+                    </li>
+                    <li>
+                        <a href ng-click="saveDataSetInfo('另存为')">另存为</a>
+                    </li>
+                </ul>
+            </span>
+                <a class="btn no-shadow bar-btn" ng-click="goBack()" title="返回"><i class="dz-icon-back"></i></a>
+        </span>
+    </div>
+    <div class="row-row">
+        <div class="hbox hbox-auto-xs hbox-auto-sm bg-light">
+            <div class="col bg-white-only w lter b-r">
+                <datatablelist config="datatableConfig"></datatablelist>
+            </div>
+            <div class="col bg-white-only">
+                <div style="height: 100%;width: 100%;position: relative;">
+                    <div id="mainMap" style="height: 100%;padding-bottom: 53px;margin-bottom: -53px;">
+                        <div style="height: 100%;position: relative;">
+                            <div id="mainDiv" style="height: 100%;width: 100%; position: absolute;">
+                                <div id="relationmapDiv"
+                                     style="height: 70%;width: 100%;">
+                                    <div style="height: 100%;width: 100%">
+                                        <relationmap model="dataset" method="method"
+                                                     category="datasetCategory"
+                                                     dataset-empty="datasetEmpty"></relationmap>
+                                    </div>
+                                </div>
+                                <div id="separatorDiv" class="separate-line text-center">
+                                    <span class="identifier">•••</span>
+                                </div>
+                                <div id="previewDiv" style="height: 30%;width: 100%;">
+                                    <div style="height: 100%;width: 100%;padding: 5px 20px 5px 10px;">
+                                        <datasetpreview config="previewConfig" condition="conditions"></datasetpreview>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="footer" style="height: 53px;position: relative;padding-right: 20px;">
+                        <div style="width:100%;height:100%;display:block ;padding:5px 20px 10px 10px;margin-right: -20px;float: left">
+                            <filterconditions filter-accept=".dsField-dragtable" refresh-data="refreshData()"
+                                              model="conditions"></filterconditions>
+                        </div>
+                        <span style="width: 20px;float: left;padding:5px 0;">
+                            <a ng-if="!showbig" class="fa fa-level-up" ng-click="showBig()" title="展开"
+                               style="padding: 10px 0 0 5px;margin: 5px 0 5px 2px;width: 20px;font-size: 25px;cursor: pointer;color: #7D8C93"></a>
+                            <a ng-if="showbig" class="fa fa-level-down" ng-click="showSmall()" title="收起"
+                               style="padding: 0 0 10px 5px;margin:0 0 5px 2px;width: 20px;font-size: 25px;cursor: pointer;color: #7D8C93"></a>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="datasetEmpty" class="dataset-drag-guide">
+        <div class="drag-path"></div>
+        <div class="drag-guide">请拖拽左侧数据到此</div>
+    </div>
+</div>
+

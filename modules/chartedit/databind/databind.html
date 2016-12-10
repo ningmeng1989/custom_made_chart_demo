@@ -1,0 +1,140 @@
+<div class="databind-name">数据绑定</div>
+<div databind-scroll>
+    <div ng-repeat="(key, value) in chart.simpleJson.data.properties">
+                <div>
+                    <div class="pos-rlt m-xs">
+                        <span class="wrapper-xs m-t-sm m-b-sm">{{value.name}}</span>
+                        <span class="pos-abt-right dropdown" dropdown>
+                            <span class="fa fa-plus" dropdown-toggle ng-click="openPlus()"></span>
+                            <ul class="dropdown-menu">
+                                <li ng-click="addField(key, d.name, 'string')" ng-if="value.type == 'string' || value.type == 'number'" ng-repeat="d in fieldTypes.dimensions.string">
+                                    <a href>{{d.name}}</a>
+                                </li>
+                                <li ng-click="addField(key, d.name, 'time')" ng-if="value.type == 'time' || value.type == 'number'" ng-repeat="d in fieldTypes.dimensions.time">
+                                    <a href>{{d.name}}</a>
+                                </li>
+                                <li ng-click="addField(key, d.name, 'map')" ng-if="value.type == 'map' || value.type == 'number'" ng-repeat="d in fieldTypes.dimensions.map">
+                                    <a href>{{d.name}}</a>
+                                </li>
+                                <li ng-click="addField(key, m.name, 'number')" ng-if="value.type == 'number'" ng-repeat="m in fieldTypes.measures.number">
+                                    <a href>{{m.name}}</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </div>
+                    <div class="panel panel-default m-r-xs m-l-xs">
+                        <div class="panel-body no-padder"
+                             dataviz-droppable
+                             dataviz-accept="{{accept}}"
+                             dataviz-drop="dragDrop($event, {key: key, type: value.type})">
+                            <div ng-mousemove="mouseover = true"
+                                 ng-mouseleave="mouseover = false"
+                                 dataviz-droppable
+                                 dataviz-accept=".hoverable"
+                                 dataviz-dragenter="dragEnter($event)"
+                                 dataviz-dragleave="dragLeave($event)"
+                                 dataviz-drop="dragDropSelf($event, {key: key, name: bind.name, type: value.type})"
+                                 ng-repeat="bind in value.bind">
+                                <div class="dataviz-databind-draggable row hoverable"
+                                     dataviz-draggable
+                                     dataviz-dragstart="dragStart($event, {name: bind.name, key: key, type: value.type})">
+                                    <div class="col-md-10 ellipsis no-padder">{{bind.name}}</div>
+                                    <div class="col-md-2 no-padder">
+                                <span class="dropdown" dataviz-dropdown ng-show="value.type[0] == 'number'">
+                                    <span class="fa fa-angle-right" dataviz-dropdown-toggle ng-click="openFieldSetting(bind.fieldSetting)"></span>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <table cellpadding="0" cellspacing="0" style="table-layout: fixed; width: 200px;">
+                                                <colgroup>
+                                                    <col width="100px">
+                                                    <col >
+                                                </colgroup>
+                                                <tbody ng-if="!isDimension(bind.fieldName)">
+                                                <tr>
+                                                    <td>
+                                                        <label class="field-label">聚合方式：</label>
+                                                    </td>
+                                                    <td>
+                                                        <select class="field-setting" ng-model="fieldSetting.aggregation" ng-options="aggregation.name for aggregation in aggregations">
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="field-label">排序：</label>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-default btn-xs m-l-xs"
+                                                                ng-class="{active: fieldSetting.sort == 'asc'}"
+                                                                ng-click="fieldSetting.sort = 'asc'">
+                                                            <i class="fa fa-sort-amount-asc"></i>
+                                                        </button>
+                                                        <button class="btn btn-default btn-xs m-l-xs"
+                                                                ng-class="{active: fieldSetting.sort == 'desc'}"
+                                                                ng-click="fieldSetting.sort = 'desc'">
+                                                            <i class="fa fa-sort-amount-desc"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="field-label">小数位数：</label>
+                                                    </td>
+                                                    <td>
+                                                        <select class="field-setting" ng-model="fieldSetting.decimal" ng-options="decimal.value for decimal in decimals">
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                                <tbody ng-if="isDimension(bind.fieldName)">
+                                                <tr>
+                                                    <td>
+                                                        <label class="field-label">聚合方式：</label>
+                                                    </td>
+                                                    <td>
+                                                        <select class="field-setting" ng-model="dimensionFieldSetting.aggregation" ng-options="aggregation.name for aggregation in aggregations | filter: {'numericOnly': false}">
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="field-label">排序：</label>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-default btn-xs m-l-xs"
+                                                                ng-class="{active: dimensionFieldSetting.sort == 'asc'}"
+                                                                ng-click="dimensionFieldSetting.sort = 'asc'">
+                                                            <i class="fa fa-sort-amount-asc"></i>
+                                                        </button>
+                                                        <button class="btn btn-default btn-xs m-l-xs"
+                                                                ng-class="{active: dimensionFieldSetting.sort == 'desc'}"
+                                                                ng-click="dimensionFieldSetting.sort = 'desc'">
+                                                            <i class="fa fa-sort-amount-desc"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="btn-center m-t-sm m-b-sm">
+                                                <button class="btn btn-default btn-xs btn-width" ng-click="confirm(bind)" dataviz-dropdown-toggle><i class="fa fa-check"></i></button>
+                                                <button class="btn btn-default btn-xs btn-width" ng-click="cancel(bind)" dataviz-dropdown-toggle><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </span>
+                                <span class="delete">
+                                    <i ng-class="{'fa fa-times': mouseover == true}" ng-click="removeField(key, bind.name)"></i>
+                                </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="holder">拖拽至此</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+

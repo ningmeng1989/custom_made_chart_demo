@@ -1,0 +1,6 @@
+/*!***********************************************
+ Copyright (c) 2016, Neusoft Inc.
+ All rights reserved
+ SaCa DataViz Version 3.1.0
+ ************************************************/
+dojo.require("dojox.gfx.move"),dojo.declare("semantics.diagram.dojox.gfx.ArrowDragger",dojox.gfx.Mover,{_target:null,_anchors:null,onMouseMove:function(o){if(!this.arrow)return console&&console.warn&&console.warn("No arrow defined for dragger."),void dojo.stopEvent(o);if(this._anchors&&this._locator){var t,r=dojo.coords(this._locator.parent._node,!0),n=o.pageX-r.x+this._locator.parent._node.scrollLeft,s=o.pageY-r.y+this._locator.parent._node.scrollTop,i=this._locator.getGridTransform(),a={};n<(this._anchors[0].x+this._anchors[1].x)/2+i.dx?(t=this._anchors[0],a.x=t.x-this._locator.dimension.pointRadius):(t=this._anchors[1],a.x=t.x+this._locator.dimension.pointRadius),a.y=t.y,Math.pow(n-t.x-i.dx,2)+Math.pow(s-t.y-i.dy,2)>Math.pow(this._locator.dimension.pointRadius,2)?this.arrow.setEndPoints(a.x+i.dx,a.y+i.dy,n,s):this.arrow.setEndPoints(n,s,n,s)}else this.arrow.setEnd(n,s);this.host.onMove(this,dojox.gfx.matrix.identity),dojo.stopEvent(o)},targetOn:function(o){this._target=o},targetOff:function(o){this._target=null},getTarget:function(){return this._target}});

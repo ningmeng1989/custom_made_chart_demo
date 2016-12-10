@@ -1,0 +1,27 @@
+<div class="story-navigator">
+    <!--<div class="story-nav-btn-group" style="height: 50px;">-->
+        <!--&lt;!&ndash;<button class="btn btn-rounded btn-icon btn-default" style="font-size: 20px" ng-click="prevPage()"><i class="fa fa-angle-double-up"></i></button>&ndash;&gt;-->
+        <!--<button class="btn btn-rounded btn-icon btn-default" style="float: right;" ng-click="removePage(current.pageIndex)"><i class="fa fa-minus"></i></button>-->
+        <!--<button class="btn btn-rounded btn-icon btn-default" ng-click="addPage()"><i class="fa fa-plus"></i></button>-->
+    <!--</div>-->
+
+    <!--<div class="w-full h-full">-->
+        <ul class="story-nav-pages" story-nav-sortable>
+            <li ng-repeat="page in chartBook.pages" class="story-nav-page" ind="{{$index}}"
+                    ng-class="{active: current.pageIndex == $index}" ng-mousedown="selectPage($index)">
+                <div class="story-nav-page-no">
+                    {{$index + 1}}
+                </div>
+                <div class="story-nav-page-image" ng-style="dashboardStyle">
+                    <img ng-src="{{page.iconStore}}">
+                </div>
+                <button class="story-remove-button" title="删除此页" ng-mousedown="removePage($event, $index)">&times;</button>
+            </li>
+        </ul>
+    <!--</div>-->
+
+    <!--<div class="story-nav-btn-group" style="height: 50px">-->
+        <!--&lt;!&ndash;<button class="btn btn-rounded btn-icon btn-default" style="font-size: 20px" ng-click="nextPage()"><i class="fa fa-angle-double-down"></i></button>&ndash;&gt;-->
+        <!--<button class="btn btn-rounded btn-default" style="margin-left: -50px;" ng-click="insertPage()">插入已有图册页</button>-->
+    <!--</div>-->
+</div>

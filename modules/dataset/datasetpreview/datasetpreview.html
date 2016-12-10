@@ -1,0 +1,85 @@
+<div style="height: 100%;width: 100%;">
+    <div style="height: 35px;width: 100%;">
+        <span class="pull-left" style="height: 100%;padding: 5px;">
+            <a href="" ng-click="addCustomField()" style="color: #25B7ED;">添加自定义字段</a></span>
+        <span class="pull-right" style="height: 100%;padding:3px 5px;">
+            <label style="float: left;padding-top: 2px;">显示 &nbsp;</label>
+            <select class="form-control" ng-model="showCount"
+                    style="width: 70px;height: 25px;float: left;padding: 1px 2px;">
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+            </select>
+            <label style="float: left;padding-top: 2px;">&nbsp; 条&nbsp;</label>
+            <button title="刷新数据" ng-click="refreshdata()"
+                    style="font-size: 18px;border-width: 0; background-color: transparent;float: left;">
+                <i class="fa fa-refresh"></i></button>
+        </span>
+    </div>
+    <div style="height: 100%;width: 100%;padding-top: 35px;margin-top: -35px;">
+        <div class="preview-table scroll-x hover dz-srollbar" style="height: 100%;width: 100%;">
+            <div style="height: 35px;width: 100%; display: block;">
+                <table class="preview-head" style="table-layout:fixed;">
+                    <thead>
+                    <tr>
+                        <td class="column" ng-repeat="field in fieldlist">
+                            <div class="dsField-dragtable "
+                                 style=" height: 35px;width: 159px;padding: 7px 2px;background-color: #9AB0C5;color: #FFF;"
+                                 dataviz-draggable
+                                 dataviz-dragstart="dragstart($event,field)">
+                                <i ng-class="{'dz-icon-string':field.fieldRole=='string','dz-icon-number':field.fieldRole=='number','dz-icon-date':field.fieldRole=='datetime'}"
+                                   style="display:inline;float:left;font-size: 14px;margin-right:5px;font-weight: 100;opacity: 0.7"></i>
+
+                                <div title="{{field.name}}"
+                                     style="padding-top: 2px;width: 110px;margin-right: -20px;float:left;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;font-size: 12px;">
+                                    {{field.name}}
+                                </div>
+                                <div style="width: 15px;float: right;">
+                                    <div class="dropdown pull-right" dropdown="">
+                                        <button class="dropdown-toggle" dropdown-toggle="" aria-haspopup="true"
+                                                aria-expanded="false"
+                                                style="font-size: small;background-color: transparent; border: none;height: 23px;">
+                                            <span class="caret" style="margin-bottom: 5px"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="" ng-click="changeRole(field,'string')">文本
+                                                <i class="dz-icon-string" style="margin-left: 30px;"></i></a></li>
+                                            <li><a href="" ng-click="changeRole(field,'datetime')">时间
+                                                <i class="dz-icon-date" style="margin-left: 30px;"></i></a></li>
+                                            <li><a href="" ng-click="changeRole(field,'number')">数值
+                                                <i class="dz-icon-number" style="margin-left: 30px;"></i></a></li>
+                                            <li class="divider" style="margin-top: 2px;margin-bottom: 2px"></li>
+                                            <li><a href="" ng-click="deleteField(field)">删除</a></li>
+                                            <li><a href="" ng-click="editField(field)">更改字段</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="position: relative; width: 10px;"></div>
+                        </td>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div style="height: 100%;width:100%;padding-top: 35px;margin-top: -34px">
+                <div class="scroll-y hover dz-srollbar" id="pretbody" style="height: 100%;position: relative;">
+                    <table class="preview-body">
+                        <tbody>
+                        <tr class="preview-row" ng-repeat="row in datas" ng-class-even="'row-even'"
+                            ng-class-odd="'row-odd'">
+                            <td class="column" ng-repeat="column in row track by $index">
+                                <div style="width: 159px;height:30px;padding:5px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;  ">
+                                    {{column}}
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

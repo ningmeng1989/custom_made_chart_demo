@@ -1,0 +1,19 @@
+<div class="story-workbench" ng-controller="storyCtrl">
+
+    <div story-toolbar></div>
+
+    <div class="story-main">
+        <div ng-if="chartBook">
+            <ng-include src="'modules/story/views/story-left.html'"></ng-include>
+
+            <div class="story-middle">
+                <ng-include src="'modules/story/views/story-middle.html'"></ng-include>
+            </div>
+
+            <!--<story-right></story-right>-->
+            <ng-include src="'modules/story/views/story-right.html'"></ng-include>
+
+        </div>
+    </div>
+
+</div>
